@@ -1,6 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("ahora borro todo!");
+        System.out.println("hello Maxi!");
+        System.out.println("martin");
+        System.out.println("funcionaaa");
+
     }
 }
