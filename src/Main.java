@@ -1,11 +1,15 @@
+import Clases.Avion;
+import Clases.Bronze;
+import Clases.Gold;
+import Clases.Silver;
+
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println("hello Maxi!");
-        System.out.println("martin");
-        System.out.println("funcionaaa");
-        System.out.println("la puta que te pario git de mierda");
-        System.out.println("vamooooo");
-
+        Gold gold = new Gold();
+        Silver silver = new Silver();
+        Bronze bronze = new Bronze();
+        System.out.println(gold);
+        System.out.println(silver);
+        System.out.println(bronze);
     }
 }
