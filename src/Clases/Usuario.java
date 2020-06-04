@@ -1,9 +1,9 @@
 package Clases;
 
 public class Usuario {
-    private  String nombre;
+    private String nombre;
     private String apellido;
-    private String dni;
+    private int dni;
     private int edad;
     private String id;
     private String password;
@@ -11,25 +11,28 @@ public class Usuario {
     private String mejorCategoria;
     private int acompañantes;
 
-    public Usuario(){
-        this.costoTotal=0;
-        this.mejorCategoria="";
-        this.acompañantes=0;
+    public Usuario() {
+        this.costoTotal = 0;
+        this.mejorCategoria = "";
+        this.acompañantes = 0;
+
     }
 
-    public Usuario(String nombre, String apellido, String dni, int edad) {
+    public Usuario(String nombre, String apellido, int dni, int edad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.edad = edad;
-        this.costoTotal=0;
-        this.mejorCategoria="";
-        this.acompañantes=0;
+        this.costoTotal = 0;
+        this.mejorCategoria = "";
+        this.acompañantes = 0;
+
     }
 
     public String getNombre() {
         return nombre;
     }
+
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -43,11 +46,11 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public String getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
@@ -100,7 +103,7 @@ public class Usuario {
     }
 
     @Override
-    public String toString(){
-        return nombre+" "+apellido+" "+edad+" "+dni+" Mejor Categoria: "+mejorCategoria+" Costo acumulado: "+costoTotal;
+    public String toString() {
+        return nombre + " " + apellido + " " + edad + " " + dni + " Mejor Categoria: " + mejorCategoria + " Costo acumulado: " + costoTotal;
     }
 }
