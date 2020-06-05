@@ -2,14 +2,15 @@ package Clases;
 
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
-import java.util.List;
+
 
 public class Vuelo {
     private Avion transporte;
-    private SimpleDateFormat fecha = new SimpleDateFormat("dd-mm-yyyy");
+    private SimpleDateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
     private String origen;
     private String destino;
-    private List<Usuario> pasajeros = new LinkedList<>();
+    private boolean disponible; // disponibilidad del vuelo
+    private LinkedList<Usuario> pasajeros = new LinkedList<>();
 
     public Vuelo() {
 
@@ -20,6 +21,7 @@ public class Vuelo {
         this.fecha = fecha;
         this.origen = origen;
         this.destino = destino;
+        this.disponible = true;
 
     }
 
@@ -55,29 +57,26 @@ public class Vuelo {
         this.destino = destino;
     }
 
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
     public void agregarPasajero(Usuario nuevo) {
-        if(!pasajeros.contains(nuevo)) {
-            pasajeros.add(nuevo);
-        }
-        /*int indice = this.pasajeros.indexOf(nuevo);
+        int indice = this.pasajeros.indexOf(nuevo);
         if (indice == -1) {
             pasajeros.add(nuevo);
-        }*/
+        }
     }
 
     public void eliminarPasajero(Usuario nuevo) {
-        pasajeros.remove(nuevo);
-
-        /*pasajeros.removeIf(pasajero -> pasajeros.contains(nuevo));
-
-        for(Usuario u:pasajeros) {
-            pasajeros.remove(nuevo);
-        }*/
-
-        /*int indice = this.pasajeros.indexOf(nuevo);
+        int indice = this.pasajeros.indexOf(nuevo);
         if (indice != -1) {
             pasajeros.remove(indice);
-        }*/
+        }
     }
 
 
@@ -100,10 +99,9 @@ public class Vuelo {
     public int contarPasajeros() {// Esto es por si algun pasajero cancela el vuelo , la celda de este objeto sera nula y no debe ser contada como un pasajero efectivo
         int validos = 0;
         for (int i = 0; i < pasajeros.size(); i++) {
-            if (pasajeros.get(i) != null) {
-                validos++;
-                validos += pasajeros.get(i).getAcompañantes(); //Agrego la cantidad de acompañantes del pasajero
-            }
+            validos++;
+            validos += pasajeros.get(i).getAcompañantes(); //Agrego la cantidad de acompañantes del pasajero
+
         }
 
         return validos;
@@ -151,15 +149,18 @@ public class Vuelo {
 
     public void mostrarPasajeros() {
         for (Usuario actual : this.pasajeros) {
-            if (actual != null) {
-                System.out.println(actual.toString());
-            }
+            System.out.println(actual);
+
         }
     }
 
     @Override
     public String toString() {
-        return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen() + " Destino: " + this.getDestino();
+        if (this.disponible) {
+            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen() + " Destino: " + this.getDestino() + " Vuelo disponible";
+        } else {
+            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen() + " Destino: " + this.getDestino() + " Vuelo cancelado";
+        }
     }
 
 
