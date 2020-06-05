@@ -9,6 +9,7 @@ public enum Distancia {
         this.distancia = distancia;
     }
 
+
     public int getDistancia() {
         return distancia;
     }

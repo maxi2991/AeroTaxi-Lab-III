@@ -1,7 +1,7 @@
 package Clases;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Vuelo {
@@ -9,7 +9,7 @@ public class Vuelo {
     private SimpleDateFormat fecha = new SimpleDateFormat("dd-mm-yyyy");
     private String origen;
     private String destino;
-    private List<Usuario> pasajeros = new ArrayList<>();
+    private List<Usuario> pasajeros = new LinkedList<>();
 
     public Vuelo() {
 
@@ -56,17 +56,28 @@ public class Vuelo {
     }
 
     public void agregarPasajero(Usuario nuevo) {
-        int indice = this.pasajeros.indexOf(nuevo);
-        if (indice == -1) {
+        if(!pasajeros.contains(nuevo)) {
             pasajeros.add(nuevo);
         }
+        /*int indice = this.pasajeros.indexOf(nuevo);
+        if (indice == -1) {
+            pasajeros.add(nuevo);
+        }*/
     }
 
     public void eliminarPasajero(Usuario nuevo) {
-        int indice = this.pasajeros.indexOf(nuevo);
+        pasajeros.remove(nuevo);
+
+        /*pasajeros.removeIf(pasajero -> pasajeros.contains(nuevo));
+
+        for(Usuario u:pasajeros) {
+            pasajeros.remove(nuevo);
+        }*/
+
+        /*int indice = this.pasajeros.indexOf(nuevo);
         if (indice != -1) {
             pasajeros.remove(indice);
-        }
+        }*/
     }
 
 

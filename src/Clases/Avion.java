@@ -8,6 +8,7 @@ public abstract class Avion implements Serializable {
     private int capacidadMaximaDePasajeros;
     private int velocidadMaxima;
     private String tipoDePropulsion;
+    private boolean ocupado;
 
     public Avion(){}
 
@@ -17,6 +18,15 @@ public abstract class Avion implements Serializable {
         this.capacidadMaximaDePasajeros = capacidadMaximaDePasajeros;
         this.velocidadMaxima = velocidadMaxima;
         this.tipoDePropulsion = tipoDePropulsion;
+        ocupado = false;
+    }
+
+    public boolean isOcupado() {
+        return ocupado;
+    }
+
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
     }
 
     public int getCapacidadDeCombustible() {
