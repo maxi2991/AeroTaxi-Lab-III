@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class Vuelo {
     private Avion transporte;
-    private SimpleDateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
+    private String fecha;
     private String origen;
     private String destino;
     private boolean disponible; // disponibilidad del vuelo
@@ -16,7 +16,7 @@ public class Vuelo {
 
     }
 
-    public Vuelo(Avion transporte, SimpleDateFormat fecha, String origen, String destino) {
+    public Vuelo(Avion transporte, String fecha, String origen, String destino) {
         this.transporte = transporte;
         this.fecha = fecha;
         this.origen = origen;
@@ -33,11 +33,11 @@ public class Vuelo {
         this.transporte = transporte;
     }
 
-    public SimpleDateFormat getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(SimpleDateFormat fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

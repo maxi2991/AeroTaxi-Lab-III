@@ -18,7 +18,7 @@ public abstract class Avion implements Serializable {
         this.capacidadMaximaDePasajeros = capacidadMaximaDePasajeros;
         this.velocidadMaxima = velocidadMaxima;
         this.tipoDePropulsion = tipoDePropulsion;
-        ocupado = false;
+        this.ocupado = false;
     }
 
     public boolean isOcupado() {
