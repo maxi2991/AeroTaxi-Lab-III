@@ -3,6 +3,7 @@ import Clases.Usuario;
 import Clases.Archivo;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +21,11 @@ public class Main {
             }
 
             Archivo.escribirUsuarios(file,users);
-            users.remove(user);
+
+            List<Usuario> users2;
+            users2 = Archivo.leerUsusarios(file);
+
+            System.out.println(users2);
 
 
 
