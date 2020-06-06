@@ -3,6 +3,7 @@ package Clases;
 import java.util.ArrayList;
 
 public class Sistema {
+
     private ArrayList<Usuario> clientes = new ArrayList<>();
     private ArrayList<Avion> aviones = new ArrayList<>();
     private ArrayList<Vuelo> vuelos = new ArrayList<>();
@@ -13,12 +14,13 @@ public class Sistema {
         }
     }
 
-    public void mostrarAvionesDisp() {
+    //comentos esta funcion para que me deje pushear el projecto
+    /*public void mostrarAvionesDisp() {
         for (Avion actual : aviones) {
             if (!actual.isOcupado())
                 System.out.println(actual);
         }
-    }
+    }*/
 
     public void mostrarVuelos() {
 
@@ -63,10 +65,4 @@ public class Sistema {
 
         }
     }
-
-
-
-
-
-
 }

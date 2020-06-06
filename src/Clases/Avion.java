@@ -1,6 +1,6 @@
 package Clases;
-
 import java.io.Serializable;
+import java.util.LinkedList;
 
 public abstract class Avion implements Serializable {
     private int capacidadDeCombustible;
@@ -8,7 +8,7 @@ public abstract class Avion implements Serializable {
     private int capacidadMaximaDePasajeros;
     private int velocidadMaxima;
     private String tipoDePropulsion;
-    private boolean ocupado;
+    private LinkedList<String> fechas = new LinkedList<>();
 
     public Avion(){}
 
@@ -18,15 +18,15 @@ public abstract class Avion implements Serializable {
         this.capacidadMaximaDePasajeros = capacidadMaximaDePasajeros;
         this.velocidadMaxima = velocidadMaxima;
         this.tipoDePropulsion = tipoDePropulsion;
-        this.ocupado = false;
+
     }
 
-    public boolean isOcupado() {
-        return ocupado;
+    public void agregarFechas(String date) {
+        fechas.add(date);
     }
 
-    public void setOcupado(boolean ocupado) {
-        this.ocupado = ocupado;
+    public void quitarFecha(String date) {
+        fechas.remove(date);
     }
 
     public int getCapacidadDeCombustible() {
@@ -39,6 +39,18 @@ public abstract class Avion implements Serializable {
 
     public int getCostoPorKM() {
         return costoPorKM;
+    }
+
+    public void setCostoPorKM(int costoPorKM) {
+        this.costoPorKM = costoPorKM;
+    }
+
+    public void setFechas(LinkedList<String> fechas) {
+        this.fechas = fechas;
+    }
+
+    public LinkedList<String> getFechas() {
+        return fechas;
     }
 
     public void setCostoPorKM() {
