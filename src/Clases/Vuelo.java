@@ -1,29 +1,28 @@
 package Clases;
 
-import java.text.SimpleDateFormat;
-import java.util.LinkedList;
-
 
 public class Vuelo {
     private Avion transporte;
     private String fecha;
     private String origen;
     private String destino;
-    private boolean disponible; // disponibilidad del vuelo
-    private LinkedList<Usuario> pasajeros = new LinkedList<>();
+    private Usuario cliente;
+    private boolean disponible; // es para marcar si el vuelo fue cancelado o no en el arraylist de sistema
 
     public Vuelo() {
 
     }
 
-    public Vuelo(Avion transporte, String fecha, String origen, String destino) {
+    public Vuelo(Avion transporte, Usuario cliente, String fecha, String origen, String destino) {
         this.transporte = transporte;
         this.fecha = fecha;
         this.origen = origen;
         this.destino = destino;
         this.disponible = true;
+        this.cliente = cliente;
 
     }
+
 
     public Avion getTransporte() {
         return transporte;
@@ -65,20 +64,13 @@ public class Vuelo {
         this.disponible = disponible;
     }
 
-    public void agregarPasajero(Usuario nuevo) {
-        int indice = this.pasajeros.indexOf(nuevo);
-        if (indice == -1) {
-            pasajeros.add(nuevo);
-        }
+    public Usuario getCliente() {
+        return cliente;
     }
 
-    public void eliminarPasajero(Usuario nuevo) {
-        int indice = this.pasajeros.indexOf(nuevo);
-        if (indice != -1) {
-            pasajeros.remove(indice);
-        }
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
-
 
     public int getTarifa() {
         int tarifa = 0;
@@ -96,21 +88,10 @@ public class Vuelo {
     }
 
 
-    public int contarPasajeros() {// Esto es por si algun pasajero cancela el vuelo , la celda de este objeto sera nula y no debe ser contada como un pasajero efectivo
-        int validos = 0;
-        for (int i = 0; i < pasajeros.size(); i++) {
-            validos++;
-            validos += pasajeros.get(i).getAcompañantes(); //Agrego la cantidad de acompañantes del pasajero
-
-        }
-
-        return validos;
-    }
-
     public float calcularCosto(Usuario actual, int distancia) {
-        int indice = this.pasajeros.indexOf(actual);
-        if (indice >= 0) {
-            return (float) (distancia * this.transporte.getCostoPorKM()) + ((this.pasajeros.get(indice).getAcompañantes() + 1) * 3500) + this.getTarifa();
+
+        if (actual != null) {
+            return (float) (distancia * transporte.getCostoPorKM()) + ((actual.getAcompañantes() + 1) * 3500) + getTarifa();
         } else {
             return 0;
         }
@@ -147,17 +128,11 @@ public class Vuelo {
 
     }
 
-    public void mostrarPasajeros() {
-        for (Usuario actual : this.pasajeros) {
-            System.out.println(actual);
-
-        }
-    }
 
     @Override
     public String toString() {
         if (this.disponible) {
-            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen() + " Destino: " + this.getDestino() + " Vuelo disponible";
+            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen() + " Destino: " + this.getDestino();
         } else {
             return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen() + " Destino: " + this.getDestino() + " Vuelo cancelado";
         }
