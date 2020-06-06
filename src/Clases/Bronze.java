@@ -8,6 +8,7 @@ public class Bronze extends Avion implements Serializable {
 
     public Bronze(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, String tipoDePropulsion) {
         super(capacidadDeCombustible, capacidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsion);
+        setTarifa(3000);
     }
 
     @Override

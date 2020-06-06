@@ -8,6 +8,7 @@ public abstract class Avion implements Serializable {
     private int capacidadMaximaDePasajeros;
     private int velocidadMaxima;
     private String tipoDePropulsion;
+    private int tarifa;
     private LinkedList<String> fechas = new LinkedList<>();
 
     public Avion(){}
@@ -19,6 +20,14 @@ public abstract class Avion implements Serializable {
         this.velocidadMaxima = velocidadMaxima;
         this.tipoDePropulsion = tipoDePropulsion;
 
+    }
+
+    public void setTarifa(int tarifa) {
+        this.tarifa = tarifa;
+    }
+
+    public int getTarifa() {
+        return tarifa;
     }
 
     public void agregarFechas(String date) {

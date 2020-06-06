@@ -15,12 +15,12 @@ public class Sistema {
     }
 
     //comentos esta funcion para que me deje pushear el projecto
-    /*public void mostrarAvionesDisp() {
+    public void mostrarAvionesDisp() {
         for (Avion actual : aviones) {
             if (!actual.isOcupado())
                 System.out.println(actual);
         }
-    }*/
+    }
 
     public void mostrarVuelos() {
 

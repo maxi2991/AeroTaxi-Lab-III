@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class Gold extends Avion implements Serializable {
     private boolean wifi;
 
+
     //catering??? no se si ponerlo porque no entiendo que carajo hace
 
     public Gold(){}
 
     public Gold(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, String tipoDePropulsion) {
         super(capacidadDeCombustible, capacidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsion);
+        setTarifa(6000);
     }
 
     public void setWifi() {

@@ -9,6 +9,7 @@ public class Silver extends Avion implements Serializable {
 
     public Silver(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, String tipoDePropulsion) {
         super(capacidadDeCombustible, capacidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsion);
+        setTarifa(4000);
     }
 
     @Override
