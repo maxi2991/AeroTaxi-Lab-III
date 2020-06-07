@@ -7,16 +7,15 @@ public class Usuario implements Serializable {
     private String apellido;
     private int dni;
     private int edad;
-    private String id;
     private String password;
     private float costoTotal;
     private String mejorCategoria;
-    private int acompañantes;
+    private int acompanantes;
 
     public Usuario() {
         this.costoTotal = 0;
         this.mejorCategoria = "";
-        this.acompañantes = 0;
+        this.acompanantes = 0;
 
     }
 
@@ -27,7 +26,7 @@ public class Usuario implements Serializable {
         this.edad = edad;
         this.costoTotal = 0;
         this.mejorCategoria = "";
-        this.acompañantes = 0;
+        this.acompanantes = 0;
 
     }
 
@@ -64,14 +63,6 @@ public class Usuario implements Serializable {
         this.edad = edad;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -96,12 +87,12 @@ public class Usuario implements Serializable {
         this.mejorCategoria = mejorCategoria;
     }
 
-    public int getAcompañantes() {
-        return acompañantes;
+    public int getAcompanantes() {
+        return acompanantes;
     }
 
-    public void setAcompañantes(int acompañantes) {
-        this.acompañantes = acompañantes;
+    public void setAcompanantes(int acompanantes) {
+        this.acompanantes = acompanantes;
     }
 
     @Override

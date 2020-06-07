@@ -22,6 +22,7 @@ public class Vuelo {
         disponible = true;
         this.cliente = cliente;
         definirCosto();
+
     }
 
 
@@ -85,14 +86,13 @@ public class Vuelo {
     public float calcularCosto( int distancia) {
 
         if (cliente != null) {
-            return (float) (distancia * transporte.getCostoPorKM()) + ((cliente.getAcompañantes() + 1) * 3500) + transporte.getTarifa();
+            return (float) (distancia * transporte.getCostoPorKM()) + ((cliente.getAcompanantes() + 1) * 3500) + transporte.getTarifa();
         } else {
             return 0;
         }
     }
 
     public void definirCosto() { // Defino la distancia segun origen y destino para calcular el costo del vuelo
-        float costo = 0;
         if ((this.getOrigen().equals("BuenosAires") && this.getDestino().equals("Cordoba")) || (this.getOrigen().equals("Cordoba") && this.getDestino().equals("BuenosAires"))) {
 
             this.costoVuelo = calcularCosto(Distancia.BSASCORDOBA.getDistancia());
