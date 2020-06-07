@@ -83,10 +83,14 @@ public class Sistema {
     }
 
     public void altaVuelo(int indexUsuario, String fecha, String origen, String destino, Avion transporte) {
-        Vuelo nuevo = new Vuelo(transporte, clientes.get(indexUsuario), fecha, origen, destino);
-        vuelos.add(nuevo);
-        actualizarCostoTotal(indexUsuario, nuevo.getCostoVuelo(), 0);
-        actualizarMejorAvion(nuevo.getTransporte(), indexUsuario);
+        if (clientes.get(indexUsuario).getAcompanantes() + 1 <= transporte.getCapacidadMaximaDePasajeros()) {
+            Vuelo nuevo = new Vuelo(transporte, clientes.get(indexUsuario), fecha, origen, destino);
+            vuelos.add(nuevo);
+            actualizarCostoTotal(indexUsuario, nuevo.getCostoVuelo(), 0);
+            actualizarMejorAvion(nuevo.getTransporte(), indexUsuario);
+        } else {
+            System.out.println("No es posible reservar el vuelo, usted ha superado la capacidad de pasajeros");
+        }
 
     }
 
