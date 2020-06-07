@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Bronze extends Avion implements Serializable {
     public Bronze() {
+        super();
     }
 
     public Bronze(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {

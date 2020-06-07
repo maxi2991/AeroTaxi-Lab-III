@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Silver extends Avion implements Serializable {
 
     //catering??? no se si ponerlo porque no entiendo que carajo hace
-    public Silver(){}
+    public Silver(){super();}
 
     public Silver(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
         super(capacidadDeCombustible, capacidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsion);

@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Sistema {
 
-    private List<Usuario> clientes = new LinkedList<>();
-    private List<Avion> aviones = new ArrayList<>();
-    private List<Vuelo> vuelos = new ArrayList<>();
+    private LinkedList<Usuario> clientes = new LinkedList<>();
+    private ArrayList<Avion> aviones = new ArrayList<>();
+    private ArrayList<Vuelo> vuelos = new ArrayList<>();
     private File archivoClientes = new File("Archivo de Clientes.json");
     private File archivoAviones = new File("Archivo de Aviones.json");
     private File archivoVuelos = new File("Archivo de Vuelos.json");
@@ -39,18 +39,9 @@ public class Sistema {
         }
     }
 
-
-    //ojo pueden haber varios vuelos con la misma fecha, origen y destino pero distintos aviones
-    /*public void cancelarVuelo(String fecha, String origen, String destino) {
-        Vuelo nuevo = buscarVuelo(fecha, origen, destino);
-        if (nuevo != null) {
-            nuevo.setDisponible(false);
-        }
-    }*/
-
-    public void cancelarVuelo(String fecha, Avion avion) {
+    public void cancelarVuelo(Usuario usuario, String fecha, String origen, String destino) {
         //asigno el resultado de buscarVuelos a index
-        int index = buscarVuelo(fecha,avion);
+        int index = buscarVuelo(usuario,fecha,origen,destino);
         if(index != -1) {
             //agarro el objeto en el lugar index de la lista de vuelos y seteo disponible como false
             vuelos.get(index).setDisponible(false);
@@ -59,19 +50,10 @@ public class Sistema {
         }
     }
 
-    //creo que esta funcion tendria que devolver un entenro
-    /*public Vuelo buscarVuelo(String fecha, String origen, String destino) {
-        Vuelo encontrado = null;
-        for (Vuelo actual : vuelos) {
-            if (actual.getFecha().equals(fecha) && actual.getOrigen().equals(origen) && actual.getDestino().equals(destino))
-                encontrado = actual;
-        }
-        return encontrado;
-    }*/
 
-    public int buscarVuelo(String fecha, Avion avion) {
+    public int buscarVuelo(Usuario usuario, String fecha, String origen, String destino) {
         for(Vuelo vuelo:vuelos) {
-            if(vuelo.getFecha().equals(fecha) && vuelo.getTransporte().equals(avion)) {
+            if(vuelo.getCliente().equals(usuario) && vuelo.getFecha().equals(fecha) && vuelo.getOrigen().equals(origen) && vuelo.getDestino().equals(destino)) {
                 return vuelos.indexOf(vuelo);
             }
         }
@@ -99,7 +81,7 @@ public class Sistema {
         }
     }
 
-    public static void escribirUsuarios(File file, List<Usuario> users) {
+    public static void escribirUsuarios(File file, LinkedList<Usuario> users) {
         ObjectMapper mapper = new ObjectMapper();
         try{
             mapper.writerWithDefaultPrettyPrinter().writeValue(file,users);
@@ -126,36 +108,37 @@ public class Sistema {
         }
     }
 
-    public static List<Usuario> leerUsusarios(File file) {
+    public static LinkedList<Usuario> leerUsusarios(File file) {
         ObjectMapper mapper = new ObjectMapper();
-        List<Usuario>users = new LinkedList<>();
+        LinkedList<Usuario>users = new LinkedList<>();
         try{
-            users = mapper.readValue(file, new TypeReference<LinkedList<Usuario>>() {});
+            users = mapper.readValue(file, new TypeReference<>() {});
         }catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
         return users;
     }
 
-    public static List<Vuelo> leerVuelos(File file) {
+    public static ArrayList<Vuelo> leerVuelos(File file) {
         ObjectMapper mapper = new ObjectMapper();
-        List<Vuelo> vuelos = new ArrayList<>();
+        ArrayList<Vuelo> vuelos = new ArrayList<>();
         try{
-            vuelos = mapper.readValue(file, new TypeReference<ArrayList<Vuelo>>() {});
+            vuelos = mapper.readValue(file, new TypeReference<>() {});
         }catch(IOException e) {
             System.out.println("error: " + e.getMessage());
         }
         return vuelos;
     }
 
-    public static List<Avion> leerAviones(File file) {
+    public static ArrayList<Avion> leerAviones(File file) {
         ObjectMapper mapper = new ObjectMapper();
-        List<Avion> aviones = new ArrayList<>();
+        ArrayList<Avion> aviones = new ArrayList<>();
         try{
-            aviones = mapper.readValue(file, new TypeReference<ArrayList<Avion>>() {});
+            aviones = mapper.readValue(file, new TypeReference<>() {});
         }catch(IOException e) {
             System.out.println("error: " + e.getMessage());
         }
         return aviones;
     }
 }
+ 
