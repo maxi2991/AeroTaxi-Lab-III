@@ -1,37 +1,15 @@
-import Clases.Distancia;
-import Clases.Usuario;
-import Clases.Archivo;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.LinkedList;
-import java.util.List;
+import Clases.Gold;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        File file = new File("Mi Archivo.json");
-        Usuario user = new Usuario("martin","caminero",39170489,23);
-        List<Usuario> users = new LinkedList<>();
-        users.add(user);
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
 
-            Archivo.escribirUsuarios(file,users);
+        Gold gold = new Gold();
 
-            List<Usuario> users2;
-            users2 = Archivo.leerUsusarios(file);
-
-            System.out.println(users2);
-
-
-
-        }catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
-        }
+        gold.setWifi();
+        System.out.println(gold);
+        System.out.println();
 
 
         /*File archivo = new File("mi_archivo.txt");
@@ -82,12 +60,6 @@ public class Main {
                 System.out.println("se produjo un error: " + e.getMessage());
             }
         }*/
-
-
-
-
-
-
 
     }
 }

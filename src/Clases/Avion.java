@@ -7,13 +7,13 @@ public abstract class Avion implements Serializable {
     private int costoPorKM;
     private int capacidadMaximaDePasajeros;
     private int velocidadMaxima;
-    private String tipoDePropulsion;
+    private Propulsores tipoDePropulsion;
     private int tarifa;
     private LinkedList<String> fechas = new LinkedList<>();
 
     public Avion(){}
 
-    public Avion(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, String tipoDePropulsion) {
+    public Avion(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
         this.capacidadDeCombustible = capacidadDeCombustible;
         setCostoPorKM();
         this.capacidadMaximaDePasajeros = capacidadMaximaDePasajeros;
@@ -83,11 +83,11 @@ public abstract class Avion implements Serializable {
         this.velocidadMaxima = velocidadMaxima;
     }
 
-    public String getTipoDePropulsion() {
+    public Propulsores getTipoDePropulsion() {
         return tipoDePropulsion;
     }
 
-    public void setTipoDePropulsion(String tipoDePropulsion) {
+    public void setTipoDePropulsion(Propulsores tipoDePropulsion) {
         this.tipoDePropulsion = tipoDePropulsion;
     }
 

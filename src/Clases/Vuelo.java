@@ -19,7 +19,7 @@ public class Vuelo {
         this.fecha = fecha;
         this.origen = origen;
         this.destino = destino;
-        this.disponible = true;
+        disponible = true;
         this.cliente = cliente;
         definirCosto();
     }
@@ -81,15 +81,11 @@ public class Vuelo {
         this.cliente = cliente;
     }
 
-    public int getTarifa() {
-        return transporte.getTarifa();
-    }
-
 
     public float calcularCosto( int distancia) {
 
         if (cliente != null) {
-            return (float) (distancia * transporte.getCostoPorKM()) + ((cliente.getAcompañantes() + 1) * 3500) + getTarifa();
+            return (float) (distancia * transporte.getCostoPorKM()) + ((cliente.getAcompañantes() + 1) * 3500) + transporte.getTarifa();
         } else {
             return 0;
         }
