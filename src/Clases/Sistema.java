@@ -52,6 +52,18 @@ public class Sistema {
     }
 
 
+    public void altaCliente(String nombre, String apellido, int edad, String pass, int dni) {
+        Usuario nuevo = new Usuario(nombre, apellido, dni, edad);
+        nuevo.setPassword(pass);
+        clientes.add(nuevo);
+    }
+
+    public void bajaCliente(int dni) {
+        int indice = buscarCliente(dni);
+        if (indice != -1)
+            clientes.remove(indice);
+    }
+
     public int buscarVuelo(Usuario usuario, String fecha, String origen, String destino) {
         for (Vuelo vuelo : vuelos) {
             if (vuelo.getCliente().equals(usuario) && vuelo.getFecha().equals(fecha) && vuelo.getOrigen().equals(origen) && vuelo.getDestino().equals(destino)) {
