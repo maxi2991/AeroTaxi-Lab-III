@@ -1,14 +1,8 @@
 package Clases;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
-
 
 public class Sistema {
 
@@ -30,13 +24,30 @@ public class Sistema {
         for (Avion actual : aviones) {
             if (!actual.getFechas().contains(fecha)) {
                 System.out.println(actual);
+
             }
+        }
+    }
+
+    public void mostrarTodosLosAviones() {
+        int i = 0;
+        for(Avion avion:aviones) {
+            System.out.println(i + ". " + avion);
+            i++;
         }
     }
 
     public void mostrarVuelos() {
         for (Vuelo actual : vuelos) {
             System.out.println(actual);
+        }
+    }
+
+    public void mostrarVuelosParaFecha(String fecha) {
+        for(Vuelo vuelo:vuelos) {
+            if(vuelo.getFecha().equals(fecha)) {
+                System.out.println(vuelo);
+            }
         }
     }
 
@@ -50,7 +61,6 @@ public class Sistema {
             System.out.println("No existe este vuelo");
         }
     }
-
 
     public void altaCliente(String nombre, String apellido, int edad, String pass, int dni) {
         Usuario nuevo = new Usuario(nombre, apellido, dni, edad);
@@ -74,7 +84,6 @@ public class Sistema {
     }
 
     public int buscarCliente(int dni) {
-
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getDni() == dni)
                 return i;
@@ -119,6 +128,31 @@ public class Sistema {
 
     }
 
+    public void altaAvion(int decicion, int cantidadDeCombustible, int cantidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsor) {
+        switch (decicion) {
+            case 0:
+                Gold gold = new Gold(cantidadDeCombustible,cantidadMaximaDePasajeros,velocidadMaxima,tipoDePropulsor);
+                aviones.add(gold);
+                break;
+            case 1:
+                Silver silver = new Silver(cantidadDeCombustible,cantidadMaximaDePasajeros,velocidadMaxima,tipoDePropulsor);
+                aviones.add(silver);
+                break;
+            case 2:
+                Bronze bronze = new Bronze(cantidadDeCombustible,cantidadMaximaDePasajeros,velocidadMaxima,tipoDePropulsor);
+                aviones.add(bronze);
+                break;
+            default:
+                System.out.println("error en la eleccion de avion");
+                break;
+        }
+    }
+
+    public void bajaAvion(int eleccion) {
+        if(eleccion >= 0 && eleccion < aviones.size())
+            aviones.remove(eleccion);
+    }
+
     public void actualizarMejorAvion(Avion actual, int indexUsuario) {
         if (clientes.get(indexUsuario).getMejorCategoria().equals("")) {
             switch (actual.getTarifa()) {
@@ -134,7 +168,7 @@ public class Sistema {
             }
         } else {
 
-            if (actual.getTarifa() == 6000) {
+            if ( actual.getTarifa() == 6000) {
                 clientes.get(indexUsuario).setMejorCategoria("Gold");
             } else {
                 if (actual.getTarifa() == 4000 && clientes.get(indexUsuario).getMejorCategoria().equals("Bronze")) {
@@ -145,67 +179,5 @@ public class Sistema {
         }
     }
 
-    public static void escribirUsuarios(File file, LinkedList<Usuario> users) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(file, users);
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
-        }
-    }
-
-    public static void escribirVuelos(File file, ArrayList<Vuelo> vuelos) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(file, vuelos);
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
-        }
-    }
-
-    public static void escribirAviones(File file, ArrayList<Avion> aviones) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(file, aviones);
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
-        }
-    }
-
-    public static LinkedList<Usuario> leerUsusarios(File file) {
-        ObjectMapper mapper = new ObjectMapper();
-        LinkedList<Usuario> users = new LinkedList<>();
-        try {
-            users = mapper.readValue(file, new TypeReference<>() {
-            });
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
-        }
-        return users;
-    }
-
-    public static ArrayList<Vuelo> leerVuelos(File file) {
-        ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Vuelo> vuelos = new ArrayList<>();
-        try {
-            vuelos = mapper.readValue(file, new TypeReference<>() {
-            });
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
-        }
-        return vuelos;
-    }
-
-    public static ArrayList<Avion> leerAviones(File file) {
-        ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Avion> aviones = new ArrayList<>();
-        try {
-            aviones = mapper.readValue(file, new TypeReference<>() {
-            });
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
-        }
-        return aviones;
-    }
 }
  

@@ -1,8 +1,24 @@
 package Clases;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.io.Serializable;
 import java.util.LinkedList;
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Gold.class, name = "Clases.Gold"),
+        @JsonSubTypes.Type(value = Silver.class, name = "Clases.Silver"),
+        @JsonSubTypes.Type(value = Bronze.class, name = "Clases.Bronze")
+
+})
 
 public abstract class Avion implements Serializable {
+    private final long id = 1L;
     private int capacidadDeCombustible;
     private int costoPorKM;
     private int capacidadMaximaDePasajeros;
@@ -12,6 +28,7 @@ public abstract class Avion implements Serializable {
     private LinkedList<String> fechas = new LinkedList<>();
 
     public Avion(){}
+
 
     public Avion(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
         this.capacidadDeCombustible = capacidadDeCombustible;
