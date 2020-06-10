@@ -13,6 +13,8 @@ public class Sistema {
     private File archivoAviones = new File("Archivo de Aviones.json");
     private File archivoVuelos = new File("Archivo de Vuelos.json");
 
+    public Sistema(){}
+
     public void mostrarClientes() {
         for (Usuario actual : clientes) {
             System.out.println(actual);
@@ -21,11 +23,12 @@ public class Sistema {
 
     //si el avion no contiene la fecha en su lista de fechas ocupadas, lo muestro
     public void mostrarAvionesDisponivlesPorFecha(String fecha) {
+        int i=0;
         for (Avion actual : aviones) {
             if (!actual.getFechas().contains(fecha)) {
-                System.out.println(actual);
-
+                System.out.println(actual+" "+i);
             }
+            i++;
         }
     }
 

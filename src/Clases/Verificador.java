@@ -51,6 +51,46 @@ public class Verificador {
         return false;
     }
 
+    // nombres y apellidos
+    public static boolean validarLetra(String nombre) throws CustomException{
+        if(!soloLetra(nombre))
+            throw new CustomException("Debe ingresar solo caracteres alfabeticos");
+        if(nombre.length()<4)
+            throw new CustomException("Debe ingresar al menos 4 caracteres");
+
+
+        return true;
+
+    }
+
+    public static boolean soloLetra(String cadena){
+        for (int i = 0; i < cadena.length(); i++) {
+            if (!Character.isLetter(cadena.charAt(i)))
+                return false;
+        }
+        return true;
+    }
+
+    // Para Edad
+    public static boolean chequearEdad(int edad ) throws CustomException{
+        if(edad>65 || edad<21)
+            throw new CustomException("Edad no permitida");
+
+        return true;
+
+    }
+
+    // Para Dni
+    public static boolean chequearDni(int dni ) throws CustomException{
+        if(String.valueOf(dni).length()!=8)
+            throw new CustomException("Dni incorrecto");
+
+        return true;
+
+    }
+
+
+
     //Para fechas
 
     public static boolean validarFecha(int dia, int mes, int ano) throws CustomException {
@@ -89,7 +129,7 @@ public class Verificador {
                 else
                     return 28;
             default:
-                return 50;
+                return 0;
         }
     }
 }
