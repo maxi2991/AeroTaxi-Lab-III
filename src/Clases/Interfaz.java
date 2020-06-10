@@ -1,4 +1,6 @@
 package Clases;
+
+import javax.xml.validation.Validator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,10 +16,8 @@ public class Interfaz {
         do {
 
             System.out.println("ingresar como:");
-
             System.out.println("0-Administrador");
             System.out.println("1-Cliente");
-
             System.out.println("9-Salir");
 
             try {
@@ -25,13 +25,13 @@ public class Interfaz {
                 switch (valor) {
                     case 0:
                         System.out.println("ingrese su contraseña");
-
+                        tecla.nextLine();
                         String pass = tecla.nextLine();
 
                         try {
                             Verificador.validarPass(pass, "administrador1");
                             System.out.println("bienvenido!");
-                            //menuAdmin();
+                            adminMenu();
                         } catch (CustomException e) {
                             System.out.println(e.getMessage());
                         }
@@ -44,6 +44,7 @@ public class Interfaz {
                     case 9:
                         System.out.println("saliendo del programa");
                         continuar = false;
+                        break;
                     default:
                         System.out.println("Opcion incorrecta");
                         break;
@@ -64,7 +65,6 @@ public class Interfaz {
         do {
             System.out.println("0-Registrarse");
             System.out.println("1-Acceder");
-
             System.out.println("9-Volver");
 
             try {
@@ -75,14 +75,14 @@ public class Interfaz {
                         menuRegistro();
                         break;
                     case 1:
-
+                        accesoMenu();
                         break;
                     case 9:
                         System.out.println("volviendo al menu principal");
                         continuar = false;
+                        break;
                     default:
                         System.out.println("Opcion incorrecta");
-
                         break;
                 }
             } catch (InputMismatchException ex) {
@@ -128,7 +128,82 @@ public class Interfaz {
 
         } catch (InputMismatchException e) {
             System.out.println("Debe ingresar numeros para Dni o edad...");
+            tecla.nextLine();
         }
+
+    }
+
+    public void accesoMenu() {
+        int dni;
+        int index;
+        String pass;
+        try {
+            System.out.println("Login:");
+            System.out.println("Ingrese Dni ");
+            dni = tecla.nextInt();
+            Verificador.chequearDni(dni);
+            index = system.buscarCliente(dni);
+            System.out.println("Ingrese contraseña ");
+            tecla.nextLine();
+            pass = tecla.nextLine();
+            Verificador.validarPass(pass, system.getClientes().get(index).getPassword());
+            System.out.println("Acceso exitoso!");
+            userOptions(index);
+        } catch (CustomException ex) {
+            System.out.println("No se puede acceder debiado a : " + ex.getMessage());
+        } catch (InputMismatchException e) {
+            System.out.println("Debe ingresar valores enteros para DNI");
+            tecla.nextLine();
+
+        }
+    }
+
+
+    public void userOptions(int indexUsuario) {
+        int eleccion;
+        boolean continuar = true;
+
+        System.out.println("Menu Opciones de Cliente "+system.getClientes().get(indexUsuario).getNombre());
+        do {
+            try {
+                System.out.println("0-Realizar reserva");
+                System.out.println("1-Cancelar Vuelo");
+                System.out.println("2-Mostrar Historial de Vuelos"); // hay que realizar dicha funcion
+                System.out.println("9-Volver al menu de acceso");
+                eleccion = tecla.nextInt();
+
+
+                switch (eleccion) {
+                    case 0:
+                        //Menu Reserva
+                        break;
+                    case 1:
+                        //Menu Cancelar vuelo
+                        break;
+                    case 2:
+                        //Metodo para mostrar historial
+                        break;
+                    case 9:
+                        System.out.println("saliendo del menu");
+                        continuar = false;
+                        break;
+                    default:
+                        System.out.println("opcion incorrecta");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("ingrese un numero entero, por favor");
+                tecla.nextLine();
+            }
+
+        } while (continuar);
+
+
+    }
+
+    public void cancelarMenu(int indexUsuario){
+
+
 
     }
 
@@ -177,18 +252,20 @@ public class Interfaz {
                     case 9:
                         System.out.println("saliendo del menu");
                         continuar = false;
+                        break;
                     default:
                         System.out.println("opcion incorrecta");
+                        break;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("ingrese un numero entero, por favor");
+                tecla.nextLine();
             }
 
         } while (continuar);
 
 
     }
-
 
 
 }

@@ -15,6 +15,18 @@ public class Sistema {
 
     public Sistema(){}
 
+    public LinkedList<Usuario> getClientes() {
+        return clientes;
+    }
+
+    public ArrayList<Avion> getAviones() {
+        return aviones;
+    }
+
+    public ArrayList<Vuelo> getVuelos() {
+        return vuelos;
+    }
+
     public void mostrarClientes() {
         for (Usuario actual : clientes) {
             System.out.println(actual);
