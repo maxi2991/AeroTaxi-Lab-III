@@ -151,9 +151,9 @@ public class Sistema {
         }
     }
 
-    public void bajaAvion(int eleccion) {
-        if(eleccion >= 0 && eleccion < aviones.size())
-            aviones.remove(eleccion);
+    public void bajaAvion(int eleccion) throws IndexOutOfBoundsException {
+        aviones.remove(eleccion);
+        throw new IndexOutOfBoundsException("indice incorrecto");
     }
 
     public void actualizarMejorAvion(Avion actual, int indexUsuario) {
