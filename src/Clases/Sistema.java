@@ -1,5 +1,7 @@
 package Clases;
+import javax.tools.Diagnostic;
 import java.io.*;
+import java.sql.ClientInfoStatus;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -37,7 +39,7 @@ public class Sistema {
     public void mostrarAvionesDisponivlesPorFecha(String fecha) {
         int i=0;
         for (Avion actual : aviones) {
-            if (!actual.getFechas().contains(fecha)) {
+            if (!actual.getFechas().contains(fecha) && actual.isDisponible()) {
                 System.out.println(actual+" "+i);
             }
             i++;
@@ -85,10 +87,28 @@ public class Sistema {
     }
 
     public void bajaCliente(int dni) {
-        int indice = buscarCliente(dni);
-        if (indice != -1)
-            clientes.remove(indice);
+        int index = buscarCliente(dni);
+        if(index != -1) {
+
+            for (Vuelo vuelo : vuelos) {
+                //busco el vuelo y el avion del cliente y los borro
+                if (vuelo.getCliente().equals(clientes.get(index))) {
+                    vuelo.getTransporte().quitarFecha(vuelo.getFecha());
+                    vuelos.remove(vuelo);
+                }
+            }
+            clientes.remove(index);
+        }
+
     }
+
+    /*public void bajaCliente(int dni) {
+        int indice = buscarCliente(dni);
+        if (indice != -1) {
+
+            clientes.remove(indice);
+        }
+    }*/
 
     public int buscarVuelo(Usuario usuario, String fecha, String origen, String destino) {
         for (Vuelo vuelo : vuelos) {
@@ -138,8 +158,6 @@ public class Sistema {
         if (fechaActual.isBefore(fechaAcancelar)) {
             String fecha = dia + "-" + mes + "-" + ano;
             cancelarVuelo(cliente, fecha, origen, destino);
-
-
         } else {
             System.out.println("No se puede cancelar un vuelo con menos de 24hs de anticipación");
         }
@@ -166,9 +184,18 @@ public class Sistema {
         }
     }
 
-    public void bajaAvion(int eleccion) throws IndexOutOfBoundsException {
-        aviones.remove(eleccion);
-        throw new IndexOutOfBoundsException("indice incorrecto");
+    public void bajaAvion(int eleccion) {
+        if(eleccion >= 0 && eleccion < aviones.size()) {
+            for (Vuelo vuelo : vuelos) {
+                if (!vuelo.getTransporte().equals(aviones.get(eleccion))) {
+                    aviones.get(eleccion).setDisponible(false);
+
+                }
+            }
+        } else {
+            System.out.println("error, indice incorrecto");
+        }
+
     }
 
     public void actualizarMejorAvion(Avion actual, int indexUsuario) {

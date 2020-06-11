@@ -1,5 +1,7 @@
 package Clases;
 
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+
 import javax.xml.validation.Validator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -198,7 +200,6 @@ public class Interfaz {
 
         } while (continuar);
 
-
     }
 
     public void cancelarMenu(int indexUsuario){
@@ -238,16 +239,16 @@ public class Interfaz {
                         system.mostrarVuelos();
                         break;
                     case 3:
-                        //menuBajaCliente()
+                        menuBajaCliente();
                         break;
                     case 4:
-                        //menuBajaAvion()
+                        menuBajaAvion();
                         break;
                     case 5:
-                        //menuAltaAvion()
+                        //menuAltaAvion();
                         break;
                     case 6:
-                        //menuBajaVuelo()
+                        //menuBajaVuelo();
                         break;
                     case 9:
                         System.out.println("saliendo del menu");
@@ -267,5 +268,57 @@ public class Interfaz {
 
     }
 
+    public void mostrarCiudades() {
+        System.out.println("0-Buenos Aires");
+        System.out.println("1-Cordoba");
+        System.out.println("2-Santiago de Chile");
+        System.out.println("3-Montevideo");
+    }
+
+    public void menuBajaVuelo() {
+        System.out.println("MENU BAJA VUELO");
+        System.out.println("por favor, ingrese el indice del vuelo a eliminar");
+    }
+
+    public void menuAltaAvion() {
+        //TODO: ver el codigo del constructor del avion porque hay que cambiar cosas
+    }
+
+    public void menuBajaAvion() {
+        System.out.println("por favor, ingrese el indice del avion a eliminar");
+        try {
+            int eleccion = tecla.nextInt();
+            system.bajaAvion(eleccion);
+            System.out.println("avion eliminado exitosamente!");
+        }catch (InputMismatchException e) {
+            System.out.println("por favor, ingrese un numero entero");
+        }
+
+
+
+
+
+
+    }
+
+    public void menuBajaCliente() {
+        int dniUsuario;
+
+        System.out.println("MENU BAJA CLIENTE");
+        System.out.println("por favor, ingrese el DNI del usuario que quiere eliminar");
+        system.mostrarClientes();
+
+        try {
+            dniUsuario = tecla.nextInt();
+            Verificador.chequearDni(dniUsuario);
+            system.bajaCliente(dniUsuario);
+            System.out.println("cliente borrado exitosamente");
+        } catch (CustomException e) {
+            System.out.println("por favor, ingrese un dni correcto");
+        }
+
+
+
+    }
 
 }

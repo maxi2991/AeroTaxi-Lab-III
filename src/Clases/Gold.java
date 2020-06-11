@@ -9,7 +9,11 @@ public class Gold extends Avion implements Serializable {
 
     //catering??? no se si ponerlo porque no entiendo que carajo hace
 
-    public Gold(){super();}
+    public Gold(){
+        super();
+        setTarifa(6000);
+        setWifi();
+    }
 
     public Gold(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
         super(capacidadDeCombustible, capacidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsion);

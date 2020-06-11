@@ -88,6 +88,14 @@ public class Verificador {
         return true;
 
     }
+    //para verificar origen y destino
+    public boolean verficarOrigenDestino(int origen, int destino)throws CustomException {
+        if(origen == destino) {
+            throw new CustomException("el origen y el destino no pueden ser iguales");
+        }
+
+        return true;
+    }
 
 
 

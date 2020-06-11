@@ -5,7 +5,8 @@ public enum Distancia {
 
     private int distancia;
 
-    private Distancia(int distancia) {
+
+    Distancia(int distancia) {
         this.distancia = distancia;
     }
 

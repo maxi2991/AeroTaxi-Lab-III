@@ -1,21 +1,7 @@
 package Clases;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 import java.io.Serializable;
 import java.util.LinkedList;
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "type")
 
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Gold.class, name = "Clases.Gold"),
-        @JsonSubTypes.Type(value = Silver.class, name = "Clases.Silver"),
-        @JsonSubTypes.Type(value = Bronze.class, name = "Clases.Bronze")
-
-})
 
 public abstract class Avion implements Serializable {
     private final long id = 1L;
@@ -25,18 +11,31 @@ public abstract class Avion implements Serializable {
     private int velocidadMaxima;
     private Propulsores tipoDePropulsion;
     private int tarifa;
+    private boolean disponible;
     private LinkedList<String> fechas = new LinkedList<>();
 
-    public Avion(){}
+    //TODO: generar avion random
+    public Avion(){
 
+    }
 
+    //constructor que va a servir para el admin
     public Avion(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
         this.capacidadDeCombustible = capacidadDeCombustible;
-        setCostoPorKM();
+        setRandomCostoPorKM();
         this.capacidadMaximaDePasajeros = capacidadMaximaDePasajeros;
         this.velocidadMaxima = velocidadMaxima;
         this.tipoDePropulsion = tipoDePropulsion;
+        disponible = true;
 
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     public void setTarifa(int tarifa) {
@@ -67,7 +66,7 @@ public abstract class Avion implements Serializable {
         return costoPorKM;
     }
 
-    public void setCostoPorKM(int costoPorKM) {
+    public void setRandomCostoPorKM(int costoPorKM) {
         this.costoPorKM = costoPorKM;
     }
 
@@ -79,7 +78,7 @@ public abstract class Avion implements Serializable {
         return fechas;
     }
 
-    public void setCostoPorKM() {
+    public void setRandomCostoPorKM() {
         //elije un numero random entre 150 y 300
         costoPorKM = (int) (Math.random() *150 + 150);
     }
