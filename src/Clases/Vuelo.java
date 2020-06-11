@@ -125,9 +125,9 @@ public class Vuelo {
     @Override
     public String toString() {
         if (this.disponible) {
-            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen() + " Destino: " + this.getDestino();
+            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen().name() + " Destino: " + this.getDestino().name();
         } else {
-            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen() + " Destino: " + this.getDestino() + " Vuelo cancelado";
+            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen().name() + " Destino: " + this.getDestino().name() + " Vuelo cancelado";
         }
     }
 

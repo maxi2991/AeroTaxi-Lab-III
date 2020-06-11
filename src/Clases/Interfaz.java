@@ -124,8 +124,12 @@ public class Interfaz {
             System.out.println("Repita su password: ");
             rpass = tecla.nextLine();
             Verificador.validarPass(pass, rpass);
-            system.altaCliente(nombre, apellido, edad, pass, dni);
-            System.out.println("Registracion exitosa");
+            if(system.buscarCliente(dni)==-1) {
+                system.altaCliente(nombre, apellido, edad, pass, dni);
+                System.out.println("Registracion exitosa");
+            }else{
+                System.out.println("Este cliente ya existe en el sistema");
+            }
 
         } catch (CustomException ex) {
             System.out.println("No se puede registrar el usuario debido a: " + ex.getMessage());
@@ -239,7 +243,7 @@ public class Interfaz {
                 System.out.println("Error en la eleccion del avion disponible");
             }
         } catch (CustomException ex) {
-            System.out.println("No se pudo cancelar el vuelo debido a : " + ex.getMessage());
+            System.out.println("No se pudo reservar el vuelo debido a : " + ex.getMessage());
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Error en la eleccion " + e.getMessage());
         } catch (InputMismatchException exc) {
