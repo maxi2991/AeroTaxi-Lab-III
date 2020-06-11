@@ -1,4 +1,5 @@
 package Clases;
+
 import javax.tools.Diagnostic;
 import java.io.*;
 import java.sql.ClientInfoStatus;
@@ -15,7 +16,8 @@ public class Sistema {
     private File archivoAviones = new File("Archivo de Aviones.json");
     private File archivoVuelos = new File("Archivo de Vuelos.json");
 
-    public Sistema(){}
+    public Sistema() {
+    }
 
     public LinkedList<Usuario> getClientes() {
         return clientes;
@@ -36,11 +38,11 @@ public class Sistema {
     }
 
     //si el avion no contiene la fecha en su lista de fechas ocupadas, lo muestro
-    public void mostrarAvionesDisponivlesPorFecha(String fecha) {
-        int i=0;
+    public void mostrarAvionesDisponiblesPorFecha(String fecha) {
+        int i = 0;
         for (Avion actual : aviones) {
             if (!actual.getFechas().contains(fecha) && actual.isDisponible()) {
-                System.out.println(actual+" "+i);
+                System.out.println(actual + " " + i);
             }
             i++;
         }
@@ -48,7 +50,7 @@ public class Sistema {
 
     public void mostrarTodosLosAviones() {
         int i = 0;
-        for(Avion avion:aviones) {
+        for (Avion avion : aviones) {
             System.out.println(i + ". " + avion);
             i++;
         }
@@ -60,15 +62,26 @@ public class Sistema {
         }
     }
 
-    public void mostrarVuelosParaFecha(String fecha) {
-        for(Vuelo vuelo:vuelos) {
-            if(vuelo.getFecha().equals(fecha)) {
+    public boolean mostrarVuelosParaFecha(String fecha, Usuario actual) {
+        boolean encontrado=false;
+        for (Vuelo vuelo : vuelos) {
+            if (vuelo.getFecha().equals(fecha) && vuelo.getCliente().equals(actual)) {
+                System.out.println(vuelo);
+                encontrado=true;
+            }
+        }
+        return encontrado;
+    }
+
+    public void mostrarVuelosUsuario(Usuario actual){
+        for (Vuelo vuelo : vuelos) {
+            if (vuelo.getCliente().equals(actual)) {
                 System.out.println(vuelo);
             }
         }
     }
 
-    public void cancelarVuelo(Usuario usuario, String fecha, String origen, String destino) {
+    public void cancelarVuelo(Usuario usuario, String fecha, Ciudad origen, Ciudad destino) {
         //asigno el resultado de buscarVuelos a index
         int index = buscarVuelo(usuario, fecha, origen, destino);
         if (index != -1) {
@@ -88,10 +101,10 @@ public class Sistema {
 
     public void bajaCliente(int dni) {
         int index = buscarCliente(dni);
-        if(index != -1) {
+        if (index != -1) {
 
             for (Vuelo vuelo : vuelos) {
-                //busco el vuelo y el avion del cliente y los borro
+                //busco el  vuelo y la fecha del avion del cliente y los borro
                 if (vuelo.getCliente().equals(clientes.get(index))) {
                     vuelo.getTransporte().quitarFecha(vuelo.getFecha());
                     vuelos.remove(vuelo);
@@ -110,7 +123,7 @@ public class Sistema {
         }
     }*/
 
-    public int buscarVuelo(Usuario usuario, String fecha, String origen, String destino) {
+    public int buscarVuelo(Usuario usuario, String fecha, Ciudad origen, Ciudad destino) {
         for (Vuelo vuelo : vuelos) {
             if (vuelo.getCliente().equals(usuario) && vuelo.getFecha().equals(fecha) && vuelo.getOrigen().equals(origen) && vuelo.getDestino().equals(destino)) {
                 return vuelos.indexOf(vuelo);
@@ -139,7 +152,7 @@ public class Sistema {
         }
     }
 
-    public void altaVuelo(int indexUsuario, String fecha, String origen, String destino, Avion transporte) {
+    public void altaVuelo(int indexUsuario, String fecha, Ciudad origen, Ciudad destino, Avion transporte) {
         if (clientes.get(indexUsuario).getAcompanantes() + 1 <= transporte.getCapacidadMaximaDePasajeros()) {
             Vuelo nuevo = new Vuelo(transporte, clientes.get(indexUsuario), fecha, origen, destino);
             vuelos.add(nuevo);
@@ -152,7 +165,7 @@ public class Sistema {
 
     }
 
-    public void bajaVuelo(Usuario cliente, int dia, int mes, int ano, String origen, String destino) {
+    public void bajaVuelo(Usuario cliente, int dia, int mes, int ano, Ciudad origen, Ciudad destino) {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaAcancelar = LocalDate.of(ano, mes, dia);
         if (fechaActual.isBefore(fechaAcancelar)) {
@@ -167,15 +180,15 @@ public class Sistema {
     public void altaAvion(int decicion, int cantidadDeCombustible, int cantidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsor) {
         switch (decicion) {
             case 0:
-                Gold gold = new Gold(cantidadDeCombustible,cantidadMaximaDePasajeros,velocidadMaxima,tipoDePropulsor);
+                Gold gold = new Gold(cantidadDeCombustible, cantidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsor);
                 aviones.add(gold);
                 break;
             case 1:
-                Silver silver = new Silver(cantidadDeCombustible,cantidadMaximaDePasajeros,velocidadMaxima,tipoDePropulsor);
+                Silver silver = new Silver(cantidadDeCombustible, cantidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsor);
                 aviones.add(silver);
                 break;
             case 2:
-                Bronze bronze = new Bronze(cantidadDeCombustible,cantidadMaximaDePasajeros,velocidadMaxima,tipoDePropulsor);
+                Bronze bronze = new Bronze(cantidadDeCombustible, cantidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsor);
                 aviones.add(bronze);
                 break;
             default:
@@ -185,13 +198,8 @@ public class Sistema {
     }
 
     public void bajaAvion(int eleccion) {
-        if(eleccion >= 0 && eleccion < aviones.size()) {
-            for (Vuelo vuelo : vuelos) {
-                if (!vuelo.getTransporte().equals(aviones.get(eleccion))) {
-                    aviones.get(eleccion).setDisponible(false);
-
-                }
-            }
+        if (eleccion >= 0 && eleccion < aviones.size()) {
+            aviones.get(eleccion).setDisponible(false);
         } else {
             System.out.println("error, indice incorrecto");
         }
@@ -213,7 +221,7 @@ public class Sistema {
             }
         } else {
 
-            if ( actual.getTarifa() == 6000) {
+            if (actual.getTarifa() == 6000) {
                 clientes.get(indexUsuario).setMejorCategoria("Gold");
             } else {
                 if (actual.getTarifa() == 4000 && clientes.get(indexUsuario).getMejorCategoria().equals("Bronze")) {

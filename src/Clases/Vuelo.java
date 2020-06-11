@@ -4,8 +4,8 @@ package Clases;
 public class Vuelo {
     private Avion transporte;
     private String fecha;
-    private String origen;
-    private String destino;
+    private Ciudad origen;
+    private Ciudad destino;
     private Usuario cliente;
     private float costoVuelo;
     private boolean disponible; // es para marcar si el vuelo fue cancelado o no en el arraylist de sistema
@@ -14,7 +14,7 @@ public class Vuelo {
 
     }
 
-    public Vuelo(Avion transporte, Usuario cliente, String fecha, String origen, String destino) {
+    public Vuelo(Avion transporte, Usuario cliente, String fecha, Ciudad origen, Ciudad destino) {
         this.transporte = transporte;
         this.fecha = fecha;
         this.origen = origen;
@@ -42,19 +42,19 @@ public class Vuelo {
         this.fecha = fecha;
     }
 
-    public String getOrigen() {
+    public Ciudad getOrigen() {
         return origen;
     }
 
-    public void setOrigen(String origen) {
+    public void setOrigen(Ciudad origen) {
         this.origen = origen;
     }
 
-    public String getDestino() {
+    public Ciudad getDestino() {
         return destino;
     }
 
-    public void setDestino(String destino) {
+    public void setDestino(Ciudad destino) {
         this.destino = destino;
     }
 
@@ -93,27 +93,27 @@ public class Vuelo {
     }
 
     public void definirCosto() { // Defino la distancia segun origen y destino para calcular el costo del vuelo
-        if ((this.getOrigen().equals("BuenosAires") && this.getDestino().equals("Cordoba")) || (this.getOrigen().equals("Cordoba") && this.getDestino().equals("BuenosAires"))) {
+        if ((origen.equals(Ciudad.BUENOS_AIRES) && destino.equals(Ciudad.CORDOBA)) || (origen.equals(Ciudad.CORDOBA) && destino.equals(Ciudad.BUENOS_AIRES))) {
 
             this.costoVuelo = calcularCosto(Distancia.BSASCORDOBA.getDistancia());
         }
-        if ((this.getOrigen().equals("BuenosAires") && this.getDestino().equals("Santiago")) || (this.getOrigen().equals("Santiago") && this.getDestino().equals("BuenosAires"))) {
+        if ((origen.equals(Ciudad.BUENOS_AIRES) && destino.equals(Ciudad.SANTIAGO)) || (origen.equals(Ciudad.SANTIAGO) && destino.equals(Ciudad.BUENOS_AIRES))) {
 
             this.costoVuelo = calcularCosto(Distancia.BSASSANTIAGO.getDistancia());
         }
-        if ((this.getOrigen().equals("BuenosAires") && this.getDestino().equals("Montevideo")) || (this.getOrigen().equals("Montevideo") && this.getDestino().equals("BuenosAires"))) {
+        if ((origen.equals(Ciudad.BUENOS_AIRES) && destino.equals(Ciudad.MONTEVIDEO)) || (origen.equals(Ciudad.MONTEVIDEO) && destino.equals(Ciudad.BUENOS_AIRES))) {
 
             this.costoVuelo = calcularCosto(Distancia.BSASMONTEVIDEO.getDistancia());
         }
-        if ((this.getOrigen().equals("Cordoba") && this.getDestino().equals("Santiago")) || (this.getOrigen().equals("Santiago") && this.getDestino().equals("Cordoba"))) {
+        if ((origen.equals(Ciudad.CORDOBA) && destino.equals(Ciudad.SANTIAGO)) || (origen.equals(Ciudad.SANTIAGO) && destino.equals(Ciudad.CORDOBA))) {
 
             this.costoVuelo = calcularCosto(Distancia.CORDOBASANTIAGO.getDistancia());
         }
-        if ((this.getOrigen().equals("Cordoba") && this.getDestino().equals("Montevideo")) || (this.getOrigen().equals("Montevideo") && this.getDestino().equals("Cordoba"))) {
+        if ((origen.equals(Ciudad.CORDOBA) && destino.equals(Ciudad.MONTEVIDEO)) || (origen.equals(Ciudad.MONTEVIDEO) && destino.equals(Ciudad.CORDOBA))) {
 
             this.costoVuelo = calcularCosto(Distancia.CORDOBAMONTEVIDEO.getDistancia());
         }
-        if ((this.getOrigen().equals("Santiago") && this.getDestino().equals("Montevideo")) || (this.getOrigen().equals("Montevideo") && this.getDestino().equals("Santiago"))) {
+        if ((origen.equals(Ciudad.SANTIAGO) && destino.equals(Ciudad.MONTEVIDEO)) || (origen.equals(Ciudad.MONTEVIDEO) && destino.equals(Ciudad.SANTIAGO))) {
 
             this.costoVuelo = calcularCosto(Distancia.MONTEVIDEOSANTIAGO.getDistancia());
         }
