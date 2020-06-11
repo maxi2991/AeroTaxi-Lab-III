@@ -11,4 +11,12 @@ public enum Propulsores {
         return Propulsores.values()[(int)(Math.random() * 2.8f)];
     }
 
+    public static Propulsores seleccionarPropulsor(int index) throws IndexOutOfBoundsException{
+        if(index >= 0 && index < Propulsores.values().length) {
+            return Propulsores.values()[index];
+        } else {
+            throw new IndexOutOfBoundsException("indice incorrecto");
+        }
+    }
+
 }

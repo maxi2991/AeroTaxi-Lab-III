@@ -12,16 +12,16 @@ public class Gold extends Avion implements Serializable {
     public Gold(){
         super();
         setTarifa(6000);
-        setWifi();
+        setRandomWifi();
     }
 
     public Gold(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
         super(capacidadDeCombustible, capacidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsion);
         setTarifa(6000);
-        setWifi();
+        setRandomWifi();
     }
 
-    public void setWifi() {
+    public void setRandomWifi() {
             //metodo random que devuelve un booleando
         this.wifi = new Random().nextBoolean();
     }

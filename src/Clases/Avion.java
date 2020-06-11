@@ -1,6 +1,7 @@
 package Clases;
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Random;
 
 
 public abstract class Avion implements Serializable {
@@ -14,8 +15,12 @@ public abstract class Avion implements Serializable {
     private boolean disponible;
     private LinkedList<String> fechas = new LinkedList<>();
 
-    //TODO: generar avion random
     public Avion(){
+        setRandomCaparidadDeCombustible();
+        setRandomCostoPorKM();
+        setRandomVelocidadMaxima();
+        setTipoDePropulsion(Propulsores.randomPropulsor());
+        disponible = true;
 
     }
 
@@ -28,6 +33,18 @@ public abstract class Avion implements Serializable {
         this.tipoDePropulsion = tipoDePropulsion;
         disponible = true;
 
+    }
+
+    public void setRandomVelocidadMaxima() {
+        velocidadMaxima = (int) (Math.random() * 100 + 150);
+    }
+
+    public void setRandomCapacidadMaximaDePasajeros() {
+        capacidadMaximaDePasajeros = (int) (Math.random() * 5);
+    }
+
+    public void setRandomCaparidadDeCombustible() {
+        capacidadDeCombustible = (int) (Math.random() * 300 + 300);
     }
 
     public boolean isDisponible() {
@@ -66,7 +83,7 @@ public abstract class Avion implements Serializable {
         return costoPorKM;
     }
 
-    public void setRandomCostoPorKM(int costoPorKM) {
+    public void setCostoPorKM(int costoPorKM) {
         this.costoPorKM = costoPorKM;
     }
 

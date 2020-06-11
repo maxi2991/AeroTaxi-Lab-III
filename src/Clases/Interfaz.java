@@ -338,10 +338,10 @@ public class Interfaz {
                         menuBajaAvion();
                         break;
                     case 5:
-                        //menuAltaAvion();
+                        menuAltaAvion();
                         break;
                     case 6:
-                        //menuBajaVuelo();
+                        menuBajaVuelo();
                         break;
                     case 9:
                         System.out.println("saliendo del menu");
@@ -370,11 +370,69 @@ public class Interfaz {
 
     public void menuBajaVuelo() {
         System.out.println("MENU BAJA VUELO");
-        System.out.println("por favor, ingrese el indice del vuelo a eliminar");
+
+        try {
+            System.out.println("por favor, ingrese el DNI del usuario al que le va a borrar el vuelo");
+            int dniUser = tecla.nextInt();
+            Verificador.chequearDni(dniUser);
+
+
+            System.out.println("ingrese el dia");
+            int dia = tecla.nextInt();
+
+            System.out.println("ingrese el mes en numeros");
+            int mes = tecla.nextInt();
+
+            int anio = LocalDate.now().getYear();
+
+            System.out.println("elija un origen");
+            mostrarCiudades();
+            Ciudad origen = Ciudad.devolverCiudad(tecla.nextInt());
+            System.out.println("elija un destino");
+            Ciudad destino = Ciudad.devolverCiudad(tecla.nextInt());
+
+            system.bajaVuelo(system.getClientes().get(system.buscarCliente(dniUser)),dia,mes,anio,origen,destino);
+            System.out.println("vuelo eliminado con exito!");
+
+        }catch (CustomException e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     public void menuAltaAvion() {
-        //TODO: ver el codigo del constructor del avion porque hay que cambiar cosas
+        System.out.println("MENU ALTA AVION");
+
+
+        try{
+            System.out.println("Seleccione el tipo de taxi a crear");
+            System.out.println("1-Gold");
+            System.out.println("2-Silver");
+            System.out.println("3-Bronze");
+            int decicion = tecla.nextInt();
+
+            System.out.println("ingrese la cantidad de conbustible que el avion va a poder llevar");
+            int cantCombustible = tecla.nextInt();
+
+            System.out.println("ingrese la cantidad de pasajeros que puede llevar el taxi");
+            int cantPasajeros = tecla.nextInt();
+
+            System.out.println("indique la velocidad maxima del taxi");
+            int velocidadMAX = tecla.nextInt();
+
+            System.out.println("ingrese el tipo de propulsion del taxi");
+            System.out.println("0-A Reaccion");
+            System.out.println("1-A Helice");
+            System.out.println("2-A Piston");
+            Propulsores propulsor = Propulsores.seleccionarPropulsor(tecla.nextInt());
+
+            system.altaAvion(decicion,cantCombustible,cantPasajeros,velocidadMAX,propulsor);
+            System.out.println("Taxi creado con exito!");
+
+        }catch (InputMismatchException e) {
+            System.out.println("ingrese los datos requeridos");
+        }
     }
 
     public void menuBajaAvion() {
