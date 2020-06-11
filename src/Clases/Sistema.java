@@ -71,6 +71,7 @@ public class Sistema {
         int index = buscarVuelo(usuario, fecha, origen, destino);
         if (index != -1) {
             //agarro el objeto en el lugar index de la lista de vuelos y seteo disponible como false
+            vuelos.get(index).getTransporte().quitarFecha(fecha);
             vuelos.get(index).setDisponible(false);
         } else {
             System.out.println("No existe este vuelo");
@@ -122,6 +123,7 @@ public class Sistema {
         if (clientes.get(indexUsuario).getAcompanantes() + 1 <= transporte.getCapacidadMaximaDePasajeros()) {
             Vuelo nuevo = new Vuelo(transporte, clientes.get(indexUsuario), fecha, origen, destino);
             vuelos.add(nuevo);
+            transporte.agregarFechas(fecha);
             actualizarCostoTotal(indexUsuario, nuevo.getCostoVuelo(), 0);
             actualizarMejorAvion(nuevo.getTransporte(), indexUsuario);
         } else {
@@ -136,6 +138,7 @@ public class Sistema {
         if (fechaActual.isBefore(fechaAcancelar)) {
             String fecha = dia + "-" + mes + "-" + ano;
             cancelarVuelo(cliente, fecha, origen, destino);
+
 
         } else {
             System.out.println("No se puede cancelar un vuelo con menos de 24hs de anticipación");
