@@ -1,5 +1,7 @@
 package Clases;
 
+import com.sun.java.accessibility.util.GUIInitializedListener;
+
 import javax.tools.Diagnostic;
 import java.io.*;
 import java.sql.ClientInfoStatus;
@@ -175,6 +177,21 @@ public class Sistema {
             System.out.println("No se puede cancelar un vuelo con menos de 24hs de anticipación");
         }
 
+    }
+    public void altaAvionRandom() {
+        int rand = (int) (Math.random() * 2.8f);
+
+        switch (rand) {
+            case 0:
+                aviones.add(new Gold());
+                break;
+            case 1:
+                aviones.add(new Silver());
+                break;
+            case 2:
+                aviones.add(new Bronze());
+                break;
+        }
     }
 
     public void altaAvion(int decicion, int cantidadDeCombustible, int cantidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsor) {

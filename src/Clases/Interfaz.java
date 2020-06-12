@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import javax.xml.validation.Validator;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Interfaz {
@@ -314,7 +315,8 @@ public class Interfaz {
                 System.out.println("3-Baja Cliente");
                 System.out.println("4-Baja Avion");
                 System.out.println("5-Alta Avion");
-                System.out.println("6-Baja Vuelo");
+                System.out.println("6-Alta Avion Random");
+                System.out.println("7-Baja Vuelo");
 
                 System.out.println("9-Volver al menu principal");
                 System.out.println("ingrese un numero");
@@ -341,6 +343,11 @@ public class Interfaz {
                         menuAltaAvion();
                         break;
                     case 6:
+                        System.out.println("GENERANDO AVION RANDOM...");
+                        system.altaAvionRandom();
+
+                        break;
+                    case 7:
                         menuBajaVuelo();
                         break;
                     case 9:
@@ -390,6 +397,7 @@ public class Interfaz {
             Ciudad origen = Ciudad.devolverCiudad(tecla.nextInt());
             System.out.println("elija un destino");
             Ciudad destino = Ciudad.devolverCiudad(tecla.nextInt());
+            Verificador.verficarOrigenDestino(origen.ordinal(),destino.ordinal());
 
             system.bajaVuelo(system.getClientes().get(system.buscarCliente(dniUser)),dia,mes,anio,origen,destino);
             System.out.println("vuelo eliminado con exito!");
@@ -400,6 +408,8 @@ public class Interfaz {
 
 
     }
+
+
 
     public void menuAltaAvion() {
         System.out.println("MENU ALTA AVION");
@@ -432,6 +442,7 @@ public class Interfaz {
 
         }catch (InputMismatchException e) {
             System.out.println("ingrese los datos requeridos");
+            tecla.nextLine();
         }
     }
 
