@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Interfaz {
+
     Sistema system = new Sistema();
     Scanner tecla = new Scanner(System.in);
 
@@ -46,6 +47,8 @@ public class Interfaz {
                         break;
 
                     case 9:
+                        System.out.println("guardando los datos");
+                        system.guardarAviones();
                         System.out.println("saliendo del programa");
                         continuar = false;
                         break;

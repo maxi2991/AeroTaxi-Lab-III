@@ -13,12 +13,14 @@ public class Gold extends Avion implements Serializable {
         super();
         setTarifa(6000);
         setRandomWifi();
+        isA = "Gold";
     }
 
     public Gold(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
         super(capacidadDeCombustible, capacidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsion);
         setTarifa(6000);
         setRandomWifi();
+        isA = "Gold";
     }
 
     public void setRandomWifi() {

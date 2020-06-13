@@ -1,27 +1,126 @@
 package Clases;
 
-import com.sun.java.accessibility.util.GUIInitializedListener;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import javax.tools.Diagnostic;
 import java.io.*;
-import java.sql.ClientInfoStatus;
+import java.nio.Buffer;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Sistema {
 
-    private LinkedList<Usuario> clientes = new LinkedList<>();
-    private ArrayList<Avion> aviones = new ArrayList<>();
-    private ArrayList<Vuelo> vuelos = new ArrayList<>();
-    private File archivoClientes = new File("Archivo de Clientes.json");
-    private File archivoAviones = new File("Archivo de Aviones.json");
-    private File archivoVuelos = new File("Archivo de Vuelos.json");
+
+    private File archivoClientes = new File("Clientes.json");
+    private File archivoAviones = new File("Aviones.json");
+    private File archivoVuelos = new File("Vuelos.json");
+    private ArrayList<Usuario> clientes ;
+    private ArrayList<Avion> aviones;
+    private ArrayList<Vuelo> vuelos ;
+
+    private static GsonBuilder gb = new GsonBuilder();
+
+    static {
+        gb.registerTypeAdapter(ArrayList.class, new CustomDeserializer());
+        gb.registerTypeAdapter(ArrayList.class, new CustomSerializer());
+    }
+    Gson gson = gb.setPrettyPrinting().create();
 
     public Sistema() {
+        aviones = cargarAviones();
+        clientes = cargarClientes();
+        vuelos = cargarVuelos();
     }
 
-    public LinkedList<Usuario> getClientes() {
+    public void guardarClientes() {
+        try{
+            String json = gson.toJson(clientes);
+
+            FileWriter file = new FileWriter(archivoClientes);
+            file.write(json);
+
+            file.flush();
+            file.close();
+
+        }catch (IOException e) {
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<Usuario> cargarClientes() {
+        ArrayList<Usuario> list = new ArrayList<>();
+
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(archivoClientes));
+
+            list = gson.fromJson(reader,list.getClass());
+
+            reader.close();
+        }catch (IOException e) {
+            System.out.println("error: " + e.getMessage());
+        }
+        return list;
+    }
+
+    public void guardarVuelos() {
+        try{
+            String json = gson.toJson(vuelos);
+            FileWriter file = new FileWriter(archivoVuelos);
+            file.write(json);
+            file.flush();
+            file.close();
+        }catch (IOException e) {
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<Vuelo> cargarVuelos() {
+        ArrayList<Vuelo> list = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(archivoVuelos));
+            reader.close();
+        }catch (IOException e) {
+            System.out.println("error: " + e.getMessage());
+        }
+        return list;
+    }
+
+    public void guardarAviones() {
+        try {
+            String json = gson.toJson(aviones);
+
+            FileWriter file = new FileWriter(archivoAviones);
+            file.write(json);
+
+            file.flush();
+            file.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public ArrayList<Avion> cargarAviones() {
+        ArrayList<Avion> list = new ArrayList<>();
+        try{
+
+            BufferedReader reader = new BufferedReader(new FileReader(archivoAviones));
+
+            list = gson.fromJson(reader, list.getClass());
+
+            reader.close();
+
+        }catch (IOException e) {
+            System.out.println("error: " + e.getMessage());
+        }
+        return list;
+    }
+
+    public void setAviones(ArrayList<Avion> aviones) {
+        this.aviones = aviones;
+    }
+
+
+    public ArrayList<Usuario> getClientes() {
         return clientes;
     }
 

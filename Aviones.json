@@ -1,0 +1,39 @@
+[
+  {
+    "wifi": false,
+    "id": 1,
+    "capacidadDeCombustible": 404,
+    "costoPorKM": 200,
+    "capacidadMaximaDePasajeros": 0,
+    "velocidadMaxima": 235,
+    "tipoDePropulsion": "HELICE",
+    "tarifa": 6000,
+    "disponible": true,
+    "fechas": [],
+    "isA": "Gold"
+  },
+  {
+    "id": 1,
+    "capacidadDeCombustible": 575,
+    "costoPorKM": 165,
+    "capacidadMaximaDePasajeros": 0,
+    "velocidadMaxima": 177,
+    "tipoDePropulsion": "REACCION",
+    "tarifa": 0,
+    "disponible": true,
+    "fechas": [],
+    "isA": "Silver"
+  },
+  {
+    "id": 1,
+    "capacidadDeCombustible": 506,
+    "costoPorKM": 160,
+    "capacidadMaximaDePasajeros": 0,
+    "velocidadMaxima": 246,
+    "tipoDePropulsion": "REACCION",
+    "tarifa": 0,
+    "disponible": true,
+    "fechas": [],
+    "isA": "Bronze"
+  }
+]

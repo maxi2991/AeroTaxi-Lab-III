@@ -14,6 +14,7 @@ public abstract class Avion implements Serializable {
     private int tarifa;
     private boolean disponible;
     private LinkedList<String> fechas = new LinkedList<>();
+    protected String isA;
 
     public Avion(){
         setRandomCaparidadDeCombustible();
@@ -21,6 +22,7 @@ public abstract class Avion implements Serializable {
         setRandomVelocidadMaxima();
         setTipoDePropulsion(Propulsores.randomPropulsor());
         disponible = true;
+        isA = "Avion";
 
     }
 
@@ -32,6 +34,7 @@ public abstract class Avion implements Serializable {
         this.velocidadMaxima = velocidadMaxima;
         this.tipoDePropulsion = tipoDePropulsion;
         disponible = true;
+        isA = "Avion";
 
     }
 
