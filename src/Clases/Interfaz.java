@@ -183,9 +183,10 @@ public class Interfaz {
         int eleccion;
         boolean continuar = true;
 
-        System.out.println("Menu Opciones de Cliente " + system.getClientes().get(indexUsuario).getNombre());
+
         do {
             try {
+                System.out.println("Menu Opciones de Cliente " + system.getClientes().get(indexUsuario).getNombre());
                 System.out.println("0-Realizar reserva");
                 System.out.println("1-Cancelar Vuelo");
                 System.out.println("2-Mostrar Historial de Vuelos");

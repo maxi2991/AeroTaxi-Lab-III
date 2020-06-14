@@ -144,8 +144,7 @@
       "tarifa": 0,
       "disponible": true,
       "fechas": [
-        "13-6-2020",
-        "15-6-2020"
+        "13-6-2020"
       ],
       "isA": "Silver"
     },
@@ -164,7 +163,7 @@
       "isA": "Usuario"
     },
     "costoVuelo": 203350.0,
-    "disponible": true,
+    "disponible": false,
     "isA": "Vuelo"
   }
 ]

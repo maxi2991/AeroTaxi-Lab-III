@@ -142,7 +142,7 @@ public class Vuelo implements Serializable {
                     "\nSalida: " + this.getFecha() +
                     " Origen: " + this.getOrigen().name() +
                     " Destino: " + this.getDestino().name() +
-                    " VUELO CANCELADO\n\n";
+                    "\nVUELO CANCELADO\n\n";
         }
     }
 

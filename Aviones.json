@@ -67,5 +67,17 @@
     "disponible": true,
     "fechas": [],
     "isA": "Gold"
+  },
+  {
+    "id": "d65de46b-4515-471c-abb2-88c0466d267b",
+    "capacidadDeCombustible": 476,
+    "costoPorKM": 174,
+    "capacidadMaximaDePasajeros": 4,
+    "velocidadMaxima": 208,
+    "tipoDePropulsion": "HELICE",
+    "tarifa": 0,
+    "disponible": true,
+    "fechas": [],
+    "isA": "Bronze"
   }
 ]

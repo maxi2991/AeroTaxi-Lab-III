@@ -142,7 +142,7 @@ public class Avion implements Serializable {
                     "\nvelocidadMaxima: " + velocidadMaxima +
                     "\ntipoDePropulsion: " + tipoDePropulsion +
                     "\nID Avion: " + id +
-                    "\nDISPONIBLE.\n";
+                    "\nEstado del Avion: DISPONIBLE.\n";
         }else {
             return  "\ncapacidadDeCombustible: " + capacidadDeCombustible +
                     "\ncostoPorKM: " + costoPorKM +
@@ -150,7 +150,7 @@ public class Avion implements Serializable {
                     "\nvelocidadMaxima: " + velocidadMaxima +
                     "\ntipoDePropulsion: " + tipoDePropulsion +
                     "\nID Avion: " + id +
-                    "\nNO DISPONIBLE.\n";
+                    "\nEstado del Avion: NO DISPONIBLE.\n";
         }
 
     }

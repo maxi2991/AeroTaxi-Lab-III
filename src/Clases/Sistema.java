@@ -193,10 +193,12 @@ public class Sistema {
     public void cancelarVuelo(Usuario usuario, String fecha, Ciudad origen, Ciudad destino) throws CustomException {
         //asigno el resultado de buscarVuelos a index
         int index = buscarVuelo(usuario, fecha, origen, destino);
+        int indexUsuario=buscarCliente(usuario.getDni());
         if (index != -1) {
             //agarro el objeto en el lugar index de la lista de vuelos y seteo disponible como false
             vuelos.get(index).getTransporte().quitarFecha(fecha);
             vuelos.get(index).setDisponible(false);
+            actualizarCostoTotal(indexUsuario,vuelos.get(index).getCostoVuelo(),1);
         } else {
             throw new CustomException("No existe este vuelo");
         }
