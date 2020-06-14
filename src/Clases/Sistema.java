@@ -14,13 +14,15 @@ public class Sistema {
     private File archivoClientes = new File("Clientes.json");
     private File archivoAviones = new File("Aviones.json");
     private File archivoVuelos = new File("Vuelos.json");
-    private ArrayList<Usuario> clientes ;
+    private ArrayList<Usuario> clientes;
     private ArrayList<Avion> aviones;
-    private ArrayList<Vuelo> vuelos ;
+    private ArrayList<Vuelo> vuelos;
 
     private static GsonBuilder gb = new GsonBuilder();
 
     static {
+        gb.registerTypeAdapter(ArrayList.class,new CustomDeserializer<Vuelo>());
+        gb.registerTypeAdapter(ArrayList.class, new CustomSerializer<Vuelo>());
         gb.registerTypeAdapter(ArrayList.class, new CustomDeserializer());
         gb.registerTypeAdapter(ArrayList.class, new CustomSerializer());
     }
@@ -65,10 +67,13 @@ public class Sistema {
     public void guardarVuelos() {
         try{
             String json = gson.toJson(vuelos);
+
             FileWriter file = new FileWriter(archivoVuelos);
             file.write(json);
+
             file.flush();
             file.close();
+
         }catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
@@ -76,8 +81,11 @@ public class Sistema {
 
     public ArrayList<Vuelo> cargarVuelos() {
         ArrayList<Vuelo> list = new ArrayList<>();
-        try {
+        try{
             BufferedReader reader = new BufferedReader(new FileReader(archivoVuelos));
+
+            list = gson.fromJson(reader, list.getClass());
+
             reader.close();
         }catch (IOException e) {
             System.out.println("error: " + e.getMessage());
@@ -102,13 +110,11 @@ public class Sistema {
     public ArrayList<Avion> cargarAviones() {
         ArrayList<Avion> list = new ArrayList<>();
         try{
-
             BufferedReader reader = new BufferedReader(new FileReader(archivoAviones));
 
             list = gson.fromJson(reader, list.getClass());
 
             reader.close();
-
         }catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
@@ -118,7 +124,6 @@ public class Sistema {
     public void setAviones(ArrayList<Avion> aviones) {
         this.aviones = aviones;
     }
-
 
     public ArrayList<Usuario> getClientes() {
         return clientes;
@@ -139,20 +144,23 @@ public class Sistema {
     }
 
     //si el avion no contiene la fecha en su lista de fechas ocupadas, lo muestro
-    public void mostrarAvionesDisponiblesPorFecha(String fecha) {
+    public boolean mostrarAvionesDisponiblesPorFecha(String fecha) {
+        boolean vacio = true;
         int i = 0;
         for (Avion actual : aviones) {
             if (!actual.getFechas().contains(fecha) && actual.isDisponible()) {
-                System.out.println(actual + " " + i);
+                System.out.println(actual + "numero de Avion: " + i);
+                vacio = false;
             }
             i++;
         }
+        return vacio;
     }
 
     public void mostrarTodosLosAviones() {
         int i = 0;
         for (Avion avion : aviones) {
-            System.out.println(i + ". " + avion);
+            System.out.println(avion + "numero de Avion: " + i);
             i++;
         }
     }
@@ -201,6 +209,7 @@ public class Sistema {
     }
 
     public void bajaCliente(int dni) {
+        ArrayList<Vuelo> aux = new ArrayList<>();
         int index = buscarCliente(dni);
         if (index != -1) {
 
@@ -208,21 +217,14 @@ public class Sistema {
                 //busco el  vuelo y la fecha del avion del cliente y los borro
                 if (vuelo.getCliente().equals(clientes.get(index))) {
                     vuelo.getTransporte().quitarFecha(vuelo.getFecha());
-                    vuelos.remove(vuelo);
+                    aux.add(vuelo);
                 }
             }
+            vuelos.removeAll(aux);
             clientes.remove(index);
         }
 
     }
-
-    /*public void bajaCliente(int dni) {
-        int indice = buscarCliente(dni);
-        if (indice != -1) {
-
-            clientes.remove(indice);
-        }
-    }*/
 
     public int buscarVuelo(Usuario usuario, String fecha, Ciudad origen, Ciudad destino) {
         for (Vuelo vuelo : vuelos) {
@@ -253,7 +255,7 @@ public class Sistema {
         }
     }
 
-    public void altaVuelo(int indexUsuario, String fecha, Ciudad origen, Ciudad destino, Avion transporte) {
+    public void altaVuelo(int indexUsuario, String fecha, Ciudad origen, Ciudad destino, Avion transporte) throws CustomException {
         if (clientes.get(indexUsuario).getAcompanantes() + 1 <= transporte.getCapacidadMaximaDePasajeros()) {
             Vuelo nuevo = new Vuelo(transporte, clientes.get(indexUsuario), fecha, origen, destino);
             vuelos.add(nuevo);
@@ -261,22 +263,23 @@ public class Sistema {
             actualizarCostoTotal(indexUsuario, nuevo.getCostoVuelo(), 0);
             actualizarMejorAvion(nuevo.getTransporte(), indexUsuario);
         } else {
-            System.out.println("No es posible reservar el vuelo, usted ha superado la capacidad de pasajeros");
+            throw new CustomException("no es posible reservar el vuelo, ustes ha superado la capacidad de pasajeros");
         }
 
     }
 
-    public void bajaVuelo(Usuario cliente, int dia, int mes, int ano, Ciudad origen, Ciudad destino) {
+    public void bajaVuelo(Usuario cliente, int dia, int mes, int ano, Ciudad origen, Ciudad destino) throws CustomException{
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaAcancelar = LocalDate.of(ano, mes, dia);
         if (fechaActual.isBefore(fechaAcancelar)) {
             String fecha = dia + "-" + mes + "-" + ano;
             cancelarVuelo(cliente, fecha, origen, destino);
         } else {
-            System.out.println("No se puede cancelar un vuelo con menos de 24hs de anticipación");
+            throw new CustomException("No se puede cancelar un vuelo con menos de 24hs de anticipación");
         }
 
     }
+
     public void altaAvionRandom() {
         int rand = (int) (Math.random() * 2.8f);
 
@@ -293,7 +296,7 @@ public class Sistema {
         }
     }
 
-    public void altaAvion(int decicion, int cantidadDeCombustible, int cantidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsor) {
+    public void altaAvion(int decicion, int cantidadDeCombustible, int cantidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsor) throws CustomException{
         switch (decicion) {
             case 0:
                 Gold gold = new Gold(cantidadDeCombustible, cantidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsor);
@@ -308,16 +311,15 @@ public class Sistema {
                 aviones.add(bronze);
                 break;
             default:
-                System.out.println("error en la eleccion de avion");
-                break;
+                throw new CustomException("error en la eleccion de avion");
         }
     }
 
-    public void bajaAvion(int eleccion) {
+    public void bajaAvion(int eleccion) throws CustomException{
         if (eleccion >= 0 && eleccion < aviones.size()) {
             aviones.get(eleccion).setDisponible(false);
         } else {
-            System.out.println("error, indice incorrecto");
+            throw new CustomException("error, indice incorrecto");
         }
 
     }

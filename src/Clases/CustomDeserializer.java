@@ -11,6 +11,8 @@ public class CustomDeserializer<T> implements JsonDeserializer<List<T>> {
     private static Map<String, Class> map = new TreeMap<String, Class>();
 
     static {
+        map.put("Usuario",Usuario.class);
+        map.put("Vuelo",Vuelo.class);
         map.put("Avion",Avion.class);
         map.put("Gold",Gold.class);
         map.put("Silver",Silver.class);
@@ -21,7 +23,7 @@ public class CustomDeserializer<T> implements JsonDeserializer<List<T>> {
     public List<T> deserialize(JsonElement json, Type typeOfT,
                                JsonDeserializationContext context) throws JsonParseException {
 
-        List list = new ArrayList<T>();
+        ArrayList<T> list = new ArrayList<T>();
         JsonArray ja = json.getAsJsonArray();
 
         for (JsonElement je : ja) {

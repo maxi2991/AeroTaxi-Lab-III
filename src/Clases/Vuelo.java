@@ -1,7 +1,10 @@
 package Clases;
 
 
-public class Vuelo {
+import javax.naming.Context;
+import java.io.Serializable;
+
+public class Vuelo implements Serializable {
     private Avion transporte;
     private String fecha;
     private Ciudad origen;
@@ -9,9 +12,12 @@ public class Vuelo {
     private Usuario cliente;
     private float costoVuelo;
     private boolean disponible; // es para marcar si el vuelo fue cancelado o no en el arraylist de sistema
+    protected String isA;
+    private Context context;
 
     public Vuelo() {
-
+        isA = "Vuelo";
+        disponible = true;
     }
 
     public Vuelo(Avion transporte, Usuario cliente, String fecha, Ciudad origen, Ciudad destino) {
@@ -22,7 +28,12 @@ public class Vuelo {
         disponible = true;
         this.cliente = cliente;
         definirCosto();
+        isA = "Vuelo";
 
+    }
+
+    public Vuelo(Context context) {
+        this.context = context;
     }
 
 
@@ -127,7 +138,7 @@ public class Vuelo {
         if (this.disponible) {
             return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen().name() + " Destino: " + this.getDestino().name();
         } else {
-            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen().name() + " Destino: " + this.getDestino().name() + " Vuelo cancelado";
+            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen().name() + " Destino: " + this.getDestino().name() + " VUELO CANCELADO";
         }
     }
 

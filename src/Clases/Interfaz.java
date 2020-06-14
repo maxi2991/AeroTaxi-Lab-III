@@ -1,7 +1,5 @@
 package Clases;
 
-import com.fasterxml.jackson.databind.exc.MismatchedInputException;
-
 import javax.xml.validation.Validator;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
@@ -13,7 +11,16 @@ public class Interfaz {
     Sistema system = new Sistema();
     Scanner tecla = new Scanner(System.in);
 
-    public void mainMenu() {
+    /*public Interfaz() {
+        system = new Sistema();
+        tecla = new Scanner(System.in);
+    }*/
+
+    public void start() {
+        mainMenu();
+    }
+
+    private void mainMenu() {
 
         int valor;
         boolean continuar = true;
@@ -49,6 +56,8 @@ public class Interfaz {
                     case 9:
                         System.out.println("guardando los datos");
                         system.guardarAviones();
+                        system.guardarVuelos();
+                        system.guardarClientes();
                         System.out.println("saliendo del programa");
                         continuar = false;
                         break;
@@ -65,7 +74,7 @@ public class Interfaz {
 
     }
 
-    public void userMenu() {
+    private void userMenu() {
         int valor;
         boolean continuar = true;
 
@@ -99,7 +108,7 @@ public class Interfaz {
         } while (continuar);
     }
 
-    public void menuRegistro() {
+    private void menuRegistro() {
         String rpass;
         int edad;
         int dni;
@@ -145,7 +154,7 @@ public class Interfaz {
 
     }
 
-    public void accesoMenu() {
+    private void accesoMenu() {
         int dni;
         int index;
         String pass;
@@ -170,8 +179,7 @@ public class Interfaz {
         }
     }
 
-
-    public void userOptions(int indexUsuario) {
+    private void userOptions(int indexUsuario) {
         int eleccion;
         boolean continuar = true;
 
@@ -217,7 +225,7 @@ public class Interfaz {
 
     }
 
-    public void reservaMenu(int indexUsuario) {
+    private void reservaMenu(int indexUsuario) {
         String fecha;
         int dia;
         int mes;
@@ -225,11 +233,14 @@ public class Interfaz {
         int destino;
         int indexAvion;
 
+
         try {
             System.out.println("Ingrese dia de su reserva");
             dia = tecla.nextInt();
             System.out.println("Ingrese mes de su reserva");
             mes = tecla.nextInt();
+            System.out.println("ingrese cantidad de acompañantes");
+            system.getClientes().get(indexUsuario).setAcompanantes(tecla.nextInt());
             Verificador.validarFecha(dia, mes, LocalDate.now().getYear());
             mostrarCiudades();
             System.out.println("Ingrese Ciudad de origen ");
@@ -238,14 +249,16 @@ public class Interfaz {
             destino = tecla.nextInt();
             Verificador.verficarOrigenDestino(origen, destino);
             fecha = dia + "-" + mes + "-" + LocalDate.now().getYear();
-            system.mostrarAvionesDisponiblesPorFecha(fecha);
-            System.out.println("Ingrese el numero de avion ");
-            indexAvion = tecla.nextInt();
-            if (system.getAviones().get(indexAvion).isDisponible() && indexAvion >= 0 && indexAvion < system.getAviones().size() && !system.getAviones().get(indexAvion).getFechas().contains(fecha)) {
+            if(!system.mostrarAvionesDisponiblesPorFecha(fecha)) {
+                System.out.println("Ingrese el numero de avion ");
+                indexAvion = tecla.nextInt();
+                Verificador.verificarAvion(indexAvion, system.getAviones(), fecha);
                 system.altaVuelo(indexUsuario, fecha, Ciudad.devolverCiudad(origen), Ciudad.devolverCiudad(destino), system.getAviones().get(indexAvion));
+                System.out.println("Reserva Exitosa!");
             } else {
-                System.out.println("Error en la eleccion del avion disponible");
+                System.out.println("no hay aviones disponibles para esta fecha");
             }
+
         } catch (CustomException ex) {
             System.out.println("No se pudo reservar el vuelo debido a : " + ex.getMessage());
         } catch (IndexOutOfBoundsException e) {
@@ -256,7 +269,7 @@ public class Interfaz {
         }
     }
 
-    public void cancelarMenu(int indexUsuario) {
+    private void cancelarMenu(int indexUsuario) {
         int dia;
         int mes;
         int origen;
@@ -274,6 +287,7 @@ public class Interfaz {
             destino = tecla.nextInt();
             Verificador.verficarOrigenDestino(origen, destino);
             system.bajaVuelo(system.getClientes().get(indexUsuario), dia, mes, LocalDate.now().getYear(), Ciudad.devolverCiudad(origen), Ciudad.devolverCiudad(destino));
+            System.out.println("Vuelo cancelado Exitosamente!");
         } catch (CustomException ex) {
             System.out.println("No se pudo cancelar el vuelo debido a : " + ex.getMessage());
         } catch (IndexOutOfBoundsException e) {
@@ -286,7 +300,7 @@ public class Interfaz {
 
     }
 
-    public void menuFecha(int indexUsuario) {
+    private void menuFecha(int indexUsuario) {
         int dia;
         int mes;
         String fecha;
@@ -305,7 +319,7 @@ public class Interfaz {
 
     }
 
-    public void adminMenu() {
+    private void adminMenu() {
         int eleccion;
         boolean continuar = true;
 
@@ -348,7 +362,6 @@ public class Interfaz {
                     case 6:
                         System.out.println("GENERANDO AVION RANDOM...");
                         system.altaAvionRandom();
-
                         break;
                     case 7:
                         menuBajaVuelo();
@@ -371,14 +384,14 @@ public class Interfaz {
 
     }
 
-    public void mostrarCiudades() {
+    private void mostrarCiudades() {
         System.out.println("0-Buenos Aires");
         System.out.println("1-Cordoba");
         System.out.println("2-Santiago de Chile");
         System.out.println("3-Montevideo");
     }
 
-    public void menuBajaVuelo() {
+    private void menuBajaVuelo() {
         System.out.println("MENU BAJA VUELO");
 
         try {
@@ -412,9 +425,7 @@ public class Interfaz {
 
     }
 
-
-
-    public void menuAltaAvion() {
+    private void menuAltaAvion() {
         System.out.println("MENU ALTA AVION");
 
 
@@ -446,11 +457,14 @@ public class Interfaz {
         }catch (InputMismatchException e) {
             System.out.println("ingrese los datos requeridos");
             tecla.nextLine();
+        }catch (CustomException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public void menuBajaAvion() {
+    private void menuBajaAvion() {
         System.out.println("por favor, ingrese el indice del avion a eliminar");
+        system.mostrarTodosLosAviones();
         try {
             int eleccion = tecla.nextInt();
             system.bajaAvion(eleccion);
@@ -458,12 +472,14 @@ public class Interfaz {
         } catch (InputMismatchException e) {
             System.out.println("por favor, ingrese un numero entero");
             tecla.nextLine();
+        }catch (CustomException e) {
+            System.out.println(e.getMessage());
         }
 
 
     }
 
-    public void menuBajaCliente() {
+    private void menuBajaCliente() {
         int dniUsuario;
 
         System.out.println("MENU BAJA CLIENTE");

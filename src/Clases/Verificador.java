@@ -1,6 +1,7 @@
 package Clases;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 // Aca van todos los metodoas de comprobacion y validacion utilizados en el menu
 public class Verificador {
@@ -95,6 +96,20 @@ public class Verificador {
         }
 
         return true;
+    }
+
+    public static void verificarAvion(int indexAvion, ArrayList<Avion> aviones, String fecha) throws CustomException {
+        if(indexAvion < 0 || indexAvion >= aviones.size()) {
+            throw new CustomException("fuera del rango permitido");
+        }
+
+        if (!aviones.get(indexAvion).isDisponible()) {
+            throw new CustomException("avion no disponible");
+        }
+
+        if(aviones.get(indexAvion).getFechas().contains(fecha)) {
+            throw new CustomException("avion ocupado para estas fechas");
+        }
     }
 
 

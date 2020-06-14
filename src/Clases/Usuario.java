@@ -11,11 +11,13 @@ public class Usuario implements Serializable {
     private float costoTotal;
     private String mejorCategoria;
     private int acompanantes;
+    protected String isA;
 
     public Usuario() {
         this.costoTotal = 0;
         this.mejorCategoria = "";
         this.acompanantes = 0;
+        isA = "Usuario";
 
     }
 
@@ -27,6 +29,7 @@ public class Usuario implements Serializable {
         this.costoTotal = 0;
         this.mejorCategoria = "";
         this.acompanantes = 0;
+        isA = "Usuario";
 
     }
 

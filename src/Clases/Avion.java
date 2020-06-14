@@ -1,7 +1,6 @@
 package Clases;
 import java.io.Serializable;
 import java.util.LinkedList;
-import java.util.Random;
 
 
 public abstract class Avion implements Serializable {
@@ -17,14 +16,18 @@ public abstract class Avion implements Serializable {
     protected String isA;
 
     public Avion(){
-        setRandomCaparidadDeCombustible();
-        setRandomCostoPorKM();
-        setRandomVelocidadMaxima();
-        setTipoDePropulsion(Propulsores.randomPropulsor());
-        disponible = true;
+        this.setRandomCapacidadDeCombustible();
+        this.setRandomCapacidadMaximaDePasajeros();
+        this.setRandomCostoPorKM();
+        this.setRandomVelocidadMaxima();
+        this.setTipoDePropulsion(Propulsores.randomPropulsor());
+        this.disponible = true;
         isA = "Avion";
 
     }
+
+
+
 
     //constructor que va a servir para el admin
     public Avion(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
@@ -43,10 +46,10 @@ public abstract class Avion implements Serializable {
     }
 
     public void setRandomCapacidadMaximaDePasajeros() {
-        capacidadMaximaDePasajeros = (int) (Math.random() * 5);
+        capacidadMaximaDePasajeros = (int) (Math.random() * 3 + 2) ;
     }
 
-    public void setRandomCaparidadDeCombustible() {
+    public void setRandomCapacidadDeCombustible() {
         capacidadDeCombustible = (int) (Math.random() * 300 + 300);
     }
 
@@ -129,10 +132,21 @@ public abstract class Avion implements Serializable {
 
     @Override
     public String toString() {
-        return  "capacidadDeCombustible: " + capacidadDeCombustible +
-                "\ncostoPorKM: " + costoPorKM +
-                "\ncapacidadMaximaDePasajeros: " + capacidadMaximaDePasajeros +
-                "\nvelocidadMaxima: " + velocidadMaxima +
-                "\ntipoDePropulsion: " + tipoDePropulsion + "\n";
+        if(disponible) {
+            return  "capacidadDeCombustible: " + capacidadDeCombustible +
+                    "\ncostoPorKM: " + costoPorKM +
+                    "\ncapacidadMaximaDePasajeros: " + capacidadMaximaDePasajeros +
+                    "\nvelocidadMaxima: " + velocidadMaxima +
+                    "\ntipoDePropulsion: " + tipoDePropulsion +
+                    "\nDISPONIBLE";
+        }else {
+            return  "capacidadDeCombustible: " + capacidadDeCombustible +
+                    "\ncostoPorKM: " + costoPorKM +
+                    "\ncapacidadMaximaDePasajeros: " + capacidadMaximaDePasajeros +
+                    "\nvelocidadMaxima: " + velocidadMaxima +
+                    "\ntipoDePropulsion: " + tipoDePropulsion +
+                    "\nNO DISPONIBLE.";
+        }
+
     }
 }

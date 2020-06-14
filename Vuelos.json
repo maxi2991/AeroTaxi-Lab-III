@@ -1,0 +1,39 @@
+[
+  {
+    "transporte": {
+      "wifi": false,
+      "id": 1,
+      "capacidadDeCombustible": 449,
+      "costoPorKM": 158,
+      "capacidadMaximaDePasajeros": 2,
+      "velocidadMaxima": 187,
+      "tipoDePropulsion": "PISTONES",
+      "tarifa": 6000,
+      "disponible": true,
+      "fechas": [
+        "16-6-2020",
+        "14-6-2020",
+        "13-6-2020",
+        "17-6-2020"
+      ],
+      "isA": "Gold"
+    },
+    "fecha": "17-6-2020",
+    "origen": "BUENOS_AIRES",
+    "destino": "MONTEVIDEO",
+    "cliente": {
+      "nombre": "martin",
+      "apellido": "caminero",
+      "dni": 39170489,
+      "edad": 24,
+      "password": "asd12345",
+      "costoTotal": 527220.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 163100.0,
+    "disponible": true,
+    "isA": "Vuelo"
+  }
+]

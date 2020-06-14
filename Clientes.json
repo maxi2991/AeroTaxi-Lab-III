@@ -1,0 +1,35 @@
+[
+  {
+    "nombre": "maximiliano",
+    "apellido": "commisso",
+    "dni": 36332504,
+    "edad": 28,
+    "password": "asd12345",
+    "costoTotal": 320330.0,
+    "mejorCategoria": "Gold",
+    "acompanantes": 1,
+    "isA": "Usuario"
+  },
+  {
+    "nombre": "martin",
+    "apellido": "caminero",
+    "dni": 39170489,
+    "edad": 24,
+    "password": "asd12345",
+    "costoTotal": 527220.0,
+    "mejorCategoria": "Gold",
+    "acompanantes": 1,
+    "isA": "Usuario"
+  },
+  {
+    "nombre": "juan",
+    "apellido": "alberto",
+    "dni": 12345678,
+    "edad": 45,
+    "password": "asd12345",
+    "costoTotal": 0.0,
+    "mejorCategoria": "",
+    "acompanantes": 1,
+    "isA": "Usuario"
+  }
+]

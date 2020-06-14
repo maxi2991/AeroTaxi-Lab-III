@@ -8,7 +8,7 @@
     "velocidadMaxima": 235,
     "tipoDePropulsion": "HELICE",
     "tarifa": 6000,
-    "disponible": true,
+    "disponible": false,
     "fechas": [],
     "isA": "Gold"
   },
@@ -20,7 +20,7 @@
     "velocidadMaxima": 177,
     "tipoDePropulsion": "REACCION",
     "tarifa": 0,
-    "disponible": true,
+    "disponible": false,
     "fechas": [],
     "isA": "Silver"
   },
@@ -32,8 +32,26 @@
     "velocidadMaxima": 246,
     "tipoDePropulsion": "REACCION",
     "tarifa": 0,
-    "disponible": true,
+    "disponible": false,
     "fechas": [],
     "isA": "Bronze"
+  },
+  {
+    "wifi": false,
+    "id": 1,
+    "capacidadDeCombustible": 449,
+    "costoPorKM": 158,
+    "capacidadMaximaDePasajeros": 2,
+    "velocidadMaxima": 187,
+    "tipoDePropulsion": "PISTONES",
+    "tarifa": 6000,
+    "disponible": true,
+    "fechas": [
+      "16-6-2020",
+      "14-6-2020",
+      "13-6-2020",
+      "17-6-2020"
+    ],
+    "isA": "Gold"
   }
 ]

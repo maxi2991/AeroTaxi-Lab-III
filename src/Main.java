@@ -1,18 +1,17 @@
-import Clases.Bronze;
-import Clases.Gold;
-import Clases.Silver;
+import Clases.Interfaz;
 import Clases.Sistema;
+import Clases.Usuario;
+
+import java.util.ArrayList;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        Sistema system = new Sistema();
-
-        system.mostrarTodosLosAviones();
-
-
-
+        Interfaz inter = new Interfaz();
+        inter.start();
 
     }
+
+
 }
