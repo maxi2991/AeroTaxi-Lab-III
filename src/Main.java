@@ -1,3 +1,4 @@
+import Clases.Gold;
 import Clases.Interfaz;
 import Clases.Sistema;
 import Clases.Usuario;

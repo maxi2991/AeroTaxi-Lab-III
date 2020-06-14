@@ -13,7 +13,6 @@ public class Vuelo implements Serializable {
     private float costoVuelo;
     private boolean disponible; // es para marcar si el vuelo fue cancelado o no en el arraylist de sistema
     protected String isA;
-    private Context context;
 
     public Vuelo() {
         isA = "Vuelo";
@@ -29,11 +28,6 @@ public class Vuelo implements Serializable {
         this.cliente = cliente;
         definirCosto();
         isA = "Vuelo";
-
-    }
-
-    public Vuelo(Context context) {
-        this.context = context;
     }
 
 
@@ -136,9 +130,19 @@ public class Vuelo implements Serializable {
     @Override
     public String toString() {
         if (this.disponible) {
-            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen().name() + " Destino: " + this.getDestino().name();
+                return "Tipo de Avion: " + transporte.isA +
+                        "\nID Avion: " + transporte.getId() +
+                        "\nSalida: " + this.getFecha() +
+                        " Origen: " + this.getOrigen().name() +
+                        " Destino: " + this.getDestino().name() +
+                        "\n\n";
         } else {
-            return this.transporte.toString() + " Salida: " + this.getFecha() + " Origen: " + this.getOrigen().name() + " Destino: " + this.getDestino().name() + " VUELO CANCELADO";
+            return "Tipo de Avion: " + transporte.isA +
+                    "\nID Avion: " + transporte.getId() +
+                    "\nSalida: " + this.getFecha() +
+                    " Origen: " + this.getOrigen().name() +
+                    " Destino: " + this.getDestino().name() +
+                    " VUELO CANCELADO\n\n";
         }
     }
 

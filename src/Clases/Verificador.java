@@ -152,7 +152,7 @@ public class Verificador {
                 else
                     return 28;
             default:
-                return 0;
+                return 99;
         }
     }
 }

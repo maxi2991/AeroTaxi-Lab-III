@@ -1,57 +1,71 @@
 [
   {
-    "wifi": false,
-    "id": 1,
-    "capacidadDeCombustible": 404,
-    "costoPorKM": 200,
-    "capacidadMaximaDePasajeros": 0,
-    "velocidadMaxima": 235,
+    "id": "s5f34f9d5",
+    "capacidadDeCombustible": 550,
+    "costoPorKM": 260,
+    "capacidadMaximaDePasajeros": 2,
+    "velocidadMaxima": 170,
     "tipoDePropulsion": "HELICE",
-    "tarifa": 6000,
-    "disponible": false,
-    "fechas": [],
-    "isA": "Gold"
+    "tarifa": 0,
+    "disponible": true,
+    "fechas": [
+      "13-6-2020",
+      "15-6-2020"
+    ],
+    "isA": "Bronze"
   },
   {
-    "id": 1,
-    "capacidadDeCombustible": 575,
-    "costoPorKM": 165,
-    "capacidadMaximaDePasajeros": 0,
-    "velocidadMaxima": 177,
-    "tipoDePropulsion": "REACCION",
+    "id": "te6f54e6d2fg4",
+    "capacidadDeCombustible": 303,
+    "costoPorKM": 187,
+    "capacidadMaximaDePasajeros": 4,
+    "velocidadMaxima": 160,
+    "tipoDePropulsion": "HELICE",
     "tarifa": 0,
-    "disponible": false,
+    "disponible": true,
+    "fechas": [
+      "13-6-2020",
+      "15-6-2020"
+    ],
+    "isA": "Silver"
+  },
+  {
+    "id": "8t3s2g4y6fd2f4",
+    "capacidadDeCombustible": 504,
+    "costoPorKM": 153,
+    "capacidadMaximaDePasajeros": 3,
+    "velocidadMaxima": 179,
+    "tipoDePropulsion": "HELICE",
+    "tarifa": 0,
+    "disponible": true,
+    "fechas": [
+      "13-6-2020"
+    ],
+    "isA": "Silver"
+  },
+  {
+    "id": "f1h6d8f1j3d5d",
+    "capacidadDeCombustible": 250,
+    "costoPorKM": 252,
+    "capacidadMaximaDePasajeros": 5,
+    "velocidadMaxima": 300,
+    "tipoDePropulsion": "PISTONES",
+    "tarifa": 4000,
+    "disponible": true,
     "fechas": [],
     "isA": "Silver"
   },
   {
-    "id": 1,
-    "capacidadDeCombustible": 506,
-    "costoPorKM": 160,
-    "capacidadMaximaDePasajeros": 0,
-    "velocidadMaxima": 246,
-    "tipoDePropulsion": "REACCION",
-    "tarifa": 0,
-    "disponible": false,
-    "fechas": [],
-    "isA": "Bronze"
-  },
-  {
-    "wifi": false,
-    "id": 1,
-    "capacidadDeCombustible": 449,
-    "costoPorKM": 158,
+    "wifi": true,
+    "id": "sd6f5rg1e68f31",
+    "capacidadDeCombustible": 321,
+    "costoPorKM": 254,
     "capacidadMaximaDePasajeros": 2,
-    "velocidadMaxima": 187,
-    "tipoDePropulsion": "PISTONES",
+    "velocidadMaxima": 365,
+    "tipoDePropulsion": "HELICE",
     "tarifa": 6000,
     "disponible": true,
-    "fechas": [
-      "16-6-2020",
-      "14-6-2020",
-      "13-6-2020",
-      "17-6-2020"
-    ],
+    "fechas": [],
     "isA": "Gold"
   }
 ]

@@ -396,6 +396,7 @@ public class Interfaz {
 
         try {
             System.out.println("por favor, ingrese el DNI del usuario al que le va a borrar el vuelo");
+            system.mostrarClientes();
             int dniUser = tecla.nextInt();
             Verificador.chequearDni(dniUser);
 
@@ -431,9 +432,9 @@ public class Interfaz {
 
         try{
             System.out.println("Seleccione el tipo de taxi a crear");
-            System.out.println("1-Gold");
-            System.out.println("2-Silver");
-            System.out.println("3-Bronze");
+            System.out.println("0-Gold");
+            System.out.println("1-Silver");
+            System.out.println("2-Bronze");
             int decicion = tecla.nextInt();
 
             System.out.println("ingrese la cantidad de conbustible que el avion va a poder llevar");

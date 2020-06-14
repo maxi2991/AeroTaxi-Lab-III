@@ -1,10 +1,11 @@
 package Clases;
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.UUID;
 
 
-public abstract class Avion implements Serializable {
-    private final long id = 1L;
+public class Avion implements Serializable {
+    private final String id = UUID.randomUUID().toString();
     private int capacidadDeCombustible;
     private int costoPorKM;
     private int capacidadMaximaDePasajeros;
@@ -26,9 +27,6 @@ public abstract class Avion implements Serializable {
 
     }
 
-
-
-
     //constructor que va a servir para el admin
     public Avion(int capacidadDeCombustible, int capacidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsion) {
         this.capacidadDeCombustible = capacidadDeCombustible;
@@ -40,6 +38,11 @@ public abstract class Avion implements Serializable {
         isA = "Avion";
 
     }
+
+    public String getId() {
+        return id;
+    }
+
 
     public void setRandomVelocidadMaxima() {
         velocidadMaxima = (int) (Math.random() * 100 + 150);
@@ -133,19 +136,21 @@ public abstract class Avion implements Serializable {
     @Override
     public String toString() {
         if(disponible) {
-            return  "capacidadDeCombustible: " + capacidadDeCombustible +
+            return  "\ncapacidadDeCombustible: " + capacidadDeCombustible +
                     "\ncostoPorKM: " + costoPorKM +
                     "\ncapacidadMaximaDePasajeros: " + capacidadMaximaDePasajeros +
                     "\nvelocidadMaxima: " + velocidadMaxima +
                     "\ntipoDePropulsion: " + tipoDePropulsion +
-                    "\nDISPONIBLE";
+                    "\nID Avion: " + id +
+                    "\nDISPONIBLE.\n";
         }else {
-            return  "capacidadDeCombustible: " + capacidadDeCombustible +
+            return  "\ncapacidadDeCombustible: " + capacidadDeCombustible +
                     "\ncostoPorKM: " + costoPorKM +
                     "\ncapacidadMaximaDePasajeros: " + capacidadMaximaDePasajeros +
                     "\nvelocidadMaxima: " + velocidadMaxima +
                     "\ntipoDePropulsion: " + tipoDePropulsion +
-                    "\nNO DISPONIBLE.";
+                    "\nID Avion: " + id +
+                    "\nNO DISPONIBLE.\n";
         }
 
     }

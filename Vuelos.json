@@ -1,24 +1,21 @@
 [
   {
     "transporte": {
-      "wifi": false,
-      "id": 1,
-      "capacidadDeCombustible": 449,
-      "costoPorKM": 158,
-      "capacidadMaximaDePasajeros": 2,
-      "velocidadMaxima": 187,
-      "tipoDePropulsion": "PISTONES",
-      "tarifa": 6000,
+      "id": "te6f54e6d2fg4",
+      "capacidadDeCombustible": 303,
+      "costoPorKM": 187,
+      "capacidadMaximaDePasajeros": 4,
+      "velocidadMaxima": 160,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 0,
       "disponible": true,
       "fechas": [
-        "16-6-2020",
-        "14-6-2020",
         "13-6-2020",
-        "17-6-2020"
+        "15-6-2020"
       ],
-      "isA": "Gold"
+      "isA": "Silver"
     },
-    "fecha": "17-6-2020",
+    "fecha": "13-6-2020",
     "origen": "BUENOS_AIRES",
     "destino": "MONTEVIDEO",
     "cliente": {
@@ -27,12 +24,146 @@
       "dni": 39170489,
       "edad": 24,
       "password": "asd12345",
-      "costoTotal": 527220.0,
+      "costoTotal": 1056790.0,
       "mejorCategoria": "Gold",
       "acompanantes": 1,
       "isA": "Usuario"
     },
-    "costoVuelo": 163100.0,
+    "costoVuelo": 188150.0,
+    "disponible": true,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "8t3s2g4y6fd2f4",
+      "capacidadDeCombustible": 504,
+      "costoPorKM": 153,
+      "capacidadMaximaDePasajeros": 3,
+      "velocidadMaxima": 179,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 0,
+      "disponible": true,
+      "fechas": [
+        "13-6-2020"
+      ],
+      "isA": "Silver"
+    },
+    "fecha": "15-6-2020",
+    "origen": "CORDOBA",
+    "destino": "MONTEVIDEO",
+    "cliente": {
+      "nombre": "martin",
+      "apellido": "caminero",
+      "dni": 39170489,
+      "edad": 24,
+      "password": "asd12345",
+      "costoTotal": 1056790.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 189070.0,
+    "disponible": false,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "8t3s2g4y6fd2f4",
+      "capacidadDeCombustible": 504,
+      "costoPorKM": 153,
+      "capacidadMaximaDePasajeros": 3,
+      "velocidadMaxima": 179,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 0,
+      "disponible": true,
+      "fechas": [
+        "13-6-2020"
+      ],
+      "isA": "Silver"
+    },
+    "fecha": "13-6-2020",
+    "origen": "BUENOS_AIRES",
+    "destino": "MONTEVIDEO",
+    "cliente": {
+      "nombre": "martin",
+      "apellido": "caminero",
+      "dni": 39170489,
+      "edad": 24,
+      "password": "asd12345",
+      "costoTotal": 1056790.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 152350.0,
+    "disponible": true,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "s5f34f9d5",
+      "capacidadDeCombustible": 550,
+      "costoPorKM": 260,
+      "capacidadMaximaDePasajeros": 2,
+      "velocidadMaxima": 170,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 0,
+      "disponible": true,
+      "fechas": [
+        "13-6-2020",
+        "15-6-2020"
+      ],
+      "isA": "Bronze"
+    },
+    "fecha": "13-6-2020",
+    "origen": "BUENOS_AIRES",
+    "destino": "MONTEVIDEO",
+    "cliente": {
+      "nombre": "maximiliano",
+      "apellido": "commisso",
+      "dni": 36332504,
+      "edad": 28,
+      "password": "asd12345",
+      "costoTotal": 774180.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 250500.0,
+    "disponible": true,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "te6f54e6d2fg4",
+      "capacidadDeCombustible": 303,
+      "costoPorKM": 187,
+      "capacidadMaximaDePasajeros": 4,
+      "velocidadMaxima": 160,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 0,
+      "disponible": true,
+      "fechas": [
+        "13-6-2020",
+        "15-6-2020"
+      ],
+      "isA": "Silver"
+    },
+    "fecha": "15-6-2020",
+    "origen": "CORDOBA",
+    "destino": "SANTIAGO",
+    "cliente": {
+      "nombre": "maximiliano",
+      "apellido": "commisso",
+      "dni": 36332504,
+      "edad": 28,
+      "password": "asd12345",
+      "costoTotal": 774180.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 203350.0,
     "disponible": true,
     "isA": "Vuelo"
   }

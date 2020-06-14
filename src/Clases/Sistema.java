@@ -149,7 +149,7 @@ public class Sistema {
         int i = 0;
         for (Avion actual : aviones) {
             if (!actual.getFechas().contains(fecha) && actual.isDisponible()) {
-                System.out.println(actual + "numero de Avion: " + i);
+                System.out.println(actual + "numero de Avion: " + i + "\n\n");
                 vacio = false;
             }
             i++;
@@ -160,7 +160,7 @@ public class Sistema {
     public void mostrarTodosLosAviones() {
         int i = 0;
         for (Avion avion : aviones) {
-            System.out.println(avion + "numero de Avion: " + i);
+            System.out.println(avion + "numero de Avion: " + i + "\n\n");
             i++;
         }
     }
@@ -174,7 +174,7 @@ public class Sistema {
     public boolean mostrarVuelosParaFecha(String fecha, Usuario actual) {
         boolean encontrado=false;
         for (Vuelo vuelo : vuelos) {
-            if (vuelo.getFecha().equals(fecha) && vuelo.getCliente().equals(actual)) {
+            if (vuelo.getFecha().equals(fecha) && vuelo.getCliente().getDni() == actual.getDni()) {
                 System.out.println(vuelo);
                 encontrado=true;
             }
@@ -184,13 +184,13 @@ public class Sistema {
 
     public void mostrarVuelosUsuario(Usuario actual){
         for (Vuelo vuelo : vuelos) {
-            if (vuelo.getCliente().equals(actual)) {
+            if (vuelo.getCliente().getDni() == actual.getDni()) {
                 System.out.println(vuelo);
             }
         }
     }
 
-    public void cancelarVuelo(Usuario usuario, String fecha, Ciudad origen, Ciudad destino) {
+    public void cancelarVuelo(Usuario usuario, String fecha, Ciudad origen, Ciudad destino) throws CustomException {
         //asigno el resultado de buscarVuelos a index
         int index = buscarVuelo(usuario, fecha, origen, destino);
         if (index != -1) {
@@ -198,7 +198,7 @@ public class Sistema {
             vuelos.get(index).getTransporte().quitarFecha(fecha);
             vuelos.get(index).setDisponible(false);
         } else {
-            System.out.println("No existe este vuelo");
+            throw new CustomException("No existe este vuelo");
         }
     }
 
@@ -215,9 +215,10 @@ public class Sistema {
 
             for (Vuelo vuelo : vuelos) {
                 //busco el  vuelo y la fecha del avion del cliente y los borro
-                if (vuelo.getCliente().equals(clientes.get(index))) {
+                if (vuelo.getCliente().getDni() == clientes.get(index).getDni()) {
                     vuelo.getTransporte().quitarFecha(vuelo.getFecha());
                     aux.add(vuelo);
+                    System.out.println("prueba");
                 }
             }
             vuelos.removeAll(aux);
@@ -228,7 +229,7 @@ public class Sistema {
 
     public int buscarVuelo(Usuario usuario, String fecha, Ciudad origen, Ciudad destino) {
         for (Vuelo vuelo : vuelos) {
-            if (vuelo.getCliente().equals(usuario) && vuelo.getFecha().equals(fecha) && vuelo.getOrigen().equals(origen) && vuelo.getDestino().equals(destino)) {
+            if (vuelo.getCliente().getDni() == usuario.getDni() && vuelo.getFecha().equals(fecha) && vuelo.getOrigen().equals(origen) && vuelo.getDestino().equals(destino)) {
                 return vuelos.indexOf(vuelo);
             }
         }
