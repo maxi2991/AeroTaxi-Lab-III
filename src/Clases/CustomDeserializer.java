@@ -1,5 +1,7 @@
 package Clases;
+
 import com.google.gson.*;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +13,12 @@ public class CustomDeserializer<T> implements JsonDeserializer<List<T>> {
     private static Map<String, Class> map = new TreeMap<String, Class>();
 
     static {
-        map.put("Usuario",Usuario.class);
-        map.put("Vuelo",Vuelo.class);
-        map.put("Avion",Avion.class);
-        map.put("Gold",Gold.class);
-        map.put("Silver",Silver.class);
-        map.put("Bronze",Bronze.class);
+        map.put("Usuario", Usuario.class);
+        map.put("Vuelo", Vuelo.class);
+        map.put("Avion", Avion.class);
+        map.put("Gold", Gold.class);
+        map.put("Silver", Silver.class);
+        map.put("Bronze", Bronze.class);
 
     }
 

@@ -5,9 +5,8 @@ import java.io.Serializable;
 public class Silver extends Avion implements Serializable {
 
 
-
     //catering??? no se si ponerlo porque no entiendo que carajo hace
-    public Silver(){
+    public Silver() {
         super();
         isA = "Silver";
         setTarifa(4000);

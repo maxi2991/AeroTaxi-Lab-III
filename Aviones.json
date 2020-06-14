@@ -121,7 +121,9 @@
     "tipoDePropulsion": "HELICE",
     "tarifa": 6000,
     "disponible": true,
-    "fechas": [],
+    "fechas": [
+      "20-6-2020"
+    ],
     "isA": "Gold"
   }
 ]

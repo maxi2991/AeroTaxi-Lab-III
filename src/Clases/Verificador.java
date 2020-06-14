@@ -53,10 +53,10 @@ public class Verificador {
     }
 
     // nombres y apellidos
-    public static boolean validarLetra(String nombre) throws CustomException{
-        if(!soloLetra(nombre))
+    public static boolean validarLetra(String nombre) throws CustomException {
+        if (!soloLetra(nombre))
             throw new CustomException("Debe ingresar solo caracteres alfabeticos");
-        if(nombre.length()<4)
+        if (nombre.length() < 4)
             throw new CustomException("Debe ingresar al menos 4 caracteres");
 
 
@@ -64,7 +64,7 @@ public class Verificador {
 
     }
 
-    public static boolean soloLetra(String cadena){
+    public static boolean soloLetra(String cadena) {
         for (int i = 0; i < cadena.length(); i++) {
             if (!Character.isLetter(cadena.charAt(i)))
                 return false;
@@ -73,8 +73,8 @@ public class Verificador {
     }
 
     // Para Edad
-    public static boolean chequearEdad(int edad ) throws CustomException{
-        if(edad>65 || edad<21)
+    public static boolean chequearEdad(int edad) throws CustomException {
+        if (edad > 65 || edad < 21)
             throw new CustomException("Edad no permitida");
 
         return true;
@@ -82,16 +82,17 @@ public class Verificador {
     }
 
     // Para Dni
-    public static boolean chequearDni(int dni ) throws CustomException{
-        if(String.valueOf(dni).length()!=8)
+    public static boolean chequearDni(int dni) throws CustomException {
+        if (String.valueOf(dni).length() != 8)
             throw new CustomException("Dni incorrecto");
 
         return true;
 
     }
+
     //para verificar origen y destino
-    public static boolean verficarOrigenDestino(int origen, int destino)throws CustomException {
-        if(origen == destino) {
+    public static boolean verficarOrigenDestino(int origen, int destino) throws CustomException {
+        if (origen == destino) {
             throw new CustomException("el origen y el destino no pueden ser iguales");
         }
 
@@ -99,7 +100,7 @@ public class Verificador {
     }
 
     public static void verificarAvion(int indexAvion, ArrayList<Avion> aviones, String fecha) throws CustomException {
-        if(indexAvion < 0 || indexAvion >= aviones.size()) {
+        if (indexAvion < 0 || indexAvion >= aviones.size()) {
             throw new CustomException("fuera del rango permitido");
         }
 
@@ -107,11 +108,10 @@ public class Verificador {
             throw new CustomException("avion no disponible");
         }
 
-        if(aviones.get(indexAvion).getFechas().contains(fecha)) {
+        if (aviones.get(indexAvion).getFechas().contains(fecha)) {
             throw new CustomException("avion ocupado para estas fechas");
         }
     }
-
 
 
     //Para fechas
@@ -122,7 +122,7 @@ public class Verificador {
 
         if (dia <= 0 || dia > diasDelmes || dia < fechaActual.getDayOfMonth())
             throw new CustomException("Dia incorrecto");
-        if (mes <= 0 || mes > 12 || mes< fechaActual.getMonthValue())
+        if (mes <= 0 || mes > 12 || mes < fechaActual.getMonthValue())
             throw new CustomException("Mes incorrecto");
 
 

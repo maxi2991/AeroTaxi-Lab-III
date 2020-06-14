@@ -21,11 +21,12 @@ public class Sistema {
     private static GsonBuilder gb = new GsonBuilder();
 
     static {
-        gb.registerTypeAdapter(ArrayList.class,new CustomDeserializer<Vuelo>());
+        gb.registerTypeAdapter(ArrayList.class, new CustomDeserializer<Vuelo>());
         gb.registerTypeAdapter(ArrayList.class, new CustomSerializer<Vuelo>());
         gb.registerTypeAdapter(ArrayList.class, new CustomDeserializer());
         gb.registerTypeAdapter(ArrayList.class, new CustomSerializer());
     }
+
     Gson gson = gb.setPrettyPrinting().create();
 
     public Sistema() {
@@ -35,7 +36,7 @@ public class Sistema {
     }
 
     public void guardarClientes() {
-        try{
+        try {
             String json = gson.toJson(clientes);
 
             FileWriter file = new FileWriter(archivoClientes);
@@ -44,7 +45,7 @@ public class Sistema {
             file.flush();
             file.close();
 
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
     }
@@ -52,20 +53,20 @@ public class Sistema {
     public ArrayList<Usuario> cargarClientes() {
         ArrayList<Usuario> list = new ArrayList<>();
 
-        try{
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(archivoClientes));
 
-            list = gson.fromJson(reader,list.getClass());
+            list = gson.fromJson(reader, list.getClass());
 
             reader.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
         return list;
     }
 
     public void guardarVuelos() {
-        try{
+        try {
             String json = gson.toJson(vuelos);
 
             FileWriter file = new FileWriter(archivoVuelos);
@@ -74,20 +75,20 @@ public class Sistema {
             file.flush();
             file.close();
 
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
     }
 
     public ArrayList<Vuelo> cargarVuelos() {
         ArrayList<Vuelo> list = new ArrayList<>();
-        try{
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(archivoVuelos));
 
             list = gson.fromJson(reader, list.getClass());
 
             reader.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
         return list;
@@ -109,13 +110,13 @@ public class Sistema {
 
     public ArrayList<Avion> cargarAviones() {
         ArrayList<Avion> list = new ArrayList<>();
-        try{
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(archivoAviones));
 
             list = gson.fromJson(reader, list.getClass());
 
             reader.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
         return list;
@@ -171,18 +172,29 @@ public class Sistema {
         }
     }
 
-    public boolean mostrarVuelosParaFecha(String fecha, Usuario actual) {
-        boolean encontrado=false;
+    public boolean mostrarTodosLosVuelosEnFecha(String fecha) {
+        boolean encontrado = false;
         for (Vuelo vuelo : vuelos) {
-            if (vuelo.getFecha().equals(fecha) && vuelo.getCliente().getDni() == actual.getDni()) {
+            if (vuelo.getFecha().equals(fecha)) {
                 System.out.println(vuelo);
-                encontrado=true;
+                encontrado = true;
             }
         }
         return encontrado;
     }
 
-    public void mostrarVuelosUsuario(Usuario actual){
+    public boolean mostrarVuelosParaFecha(String fecha, Usuario actual) {
+        boolean encontrado = false;
+        for (Vuelo vuelo : vuelos) {
+            if (vuelo.getFecha().equals(fecha) && vuelo.getCliente().getDni() == actual.getDni()) {
+                System.out.println(vuelo);
+                encontrado = true;
+            }
+        }
+        return encontrado;
+    }
+
+    public void mostrarVuelosUsuario(Usuario actual) {
         for (Vuelo vuelo : vuelos) {
             if (vuelo.getCliente().getDni() == actual.getDni()) {
                 System.out.println(vuelo);
@@ -193,12 +205,12 @@ public class Sistema {
     public void cancelarVuelo(Usuario usuario, String fecha, Ciudad origen, Ciudad destino) throws CustomException {
         //asigno el resultado de buscarVuelos a index
         int index = buscarVuelo(usuario, fecha, origen, destino);
-        int indexUsuario=buscarCliente(usuario.getDni());
+        int indexUsuario = buscarCliente(usuario.getDni());
         if (index != -1) {
             //agarro el objeto en el lugar index de la lista de vuelos y seteo disponible como false
             vuelos.get(index).getTransporte().quitarFecha(fecha);
             vuelos.get(index).setDisponible(false);
-            actualizarCostoTotal(indexUsuario,vuelos.get(index).getCostoVuelo(),1);
+            actualizarCostoTotal(indexUsuario, vuelos.get(index).getCostoVuelo(), 1);
         } else {
             throw new CustomException("No existe este vuelo");
         }
@@ -271,7 +283,7 @@ public class Sistema {
 
     }
 
-    public void bajaVuelo(Usuario cliente, int dia, int mes, int ano, Ciudad origen, Ciudad destino) throws CustomException{
+    public void bajaVuelo(Usuario cliente, int dia, int mes, int ano, Ciudad origen, Ciudad destino) throws CustomException {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaAcancelar = LocalDate.of(ano, mes, dia);
         if (fechaActual.isBefore(fechaAcancelar)) {
@@ -299,7 +311,7 @@ public class Sistema {
         }
     }
 
-    public void altaAvion(int decicion, int cantidadDeCombustible, int cantidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsor) throws CustomException{
+    public void altaAvion(int decicion, int cantidadDeCombustible, int cantidadMaximaDePasajeros, int velocidadMaxima, Propulsores tipoDePropulsor) throws CustomException {
         switch (decicion) {
             case 0:
                 Gold gold = new Gold(cantidadDeCombustible, cantidadMaximaDePasajeros, velocidadMaxima, tipoDePropulsor);
@@ -318,7 +330,7 @@ public class Sistema {
         }
     }
 
-    public void bajaAvion(int eleccion) throws CustomException{
+    public void bajaAvion(int eleccion) throws CustomException {
         if (eleccion >= 0 && eleccion < aviones.size()) {
             aviones.get(eleccion).setDisponible(false);
         } else {
@@ -326,6 +338,7 @@ public class Sistema {
         }
 
     }
+
 
     public void actualizarMejorAvion(Avion actual, int indexUsuario) {
         if (clientes.get(indexUsuario).getMejorCategoria().equals("")) {

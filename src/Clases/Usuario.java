@@ -100,6 +100,6 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return nombre + " " + apellido + "\nEDAD: " + edad + "\nDNI: " + dni + "\nMejor Categoria: " + mejorCategoria + "\nCosto acumulado: " + costoTotal+"\n\n";
+        return nombre + " " + apellido + "\nEDAD: " + edad + "\nDNI: " + dni + "\nMejor Categoria: " + mejorCategoria + "\nCosto acumulado: " + costoTotal + "\n\n";
     }
 }

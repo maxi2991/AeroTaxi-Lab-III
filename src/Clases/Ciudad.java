@@ -1,7 +1,7 @@
 package Clases;
 
 public enum Ciudad {
-    BUENOS_AIRES,CORDOBA,SANTIAGO,MONTEVIDEO;
+    BUENOS_AIRES, CORDOBA, SANTIAGO, MONTEVIDEO;
 
     public static Ciudad devolverCiudad(int eleccion) throws IndexOutOfBoundsException {
         if (eleccion >= 0 && eleccion < Ciudad.values().length) {

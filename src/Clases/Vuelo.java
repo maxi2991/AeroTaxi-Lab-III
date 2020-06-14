@@ -1,7 +1,6 @@
 package Clases;
 
 
-import javax.naming.Context;
 import java.io.Serializable;
 
 public class Vuelo implements Serializable {
@@ -88,7 +87,7 @@ public class Vuelo implements Serializable {
     }
 
 
-    public float calcularCosto( int distancia) {
+    public float calcularCosto(int distancia) {
 
         if (cliente != null) {
             return (float) (distancia * transporte.getCostoPorKM()) + ((cliente.getAcompanantes() + 1) * 3500) + transporte.getTarifa();
@@ -130,12 +129,12 @@ public class Vuelo implements Serializable {
     @Override
     public String toString() {
         if (this.disponible) {
-                return "Tipo de Avion: " + transporte.isA +
-                        "\nID Avion: " + transporte.getId() +
-                        "\nSalida: " + this.getFecha() +
-                        " Origen: " + this.getOrigen().name() +
-                        " Destino: " + this.getDestino().name() +
-                        "\n\n";
+            return "Tipo de Avion: " + transporte.isA +
+                    "\nID Avion: " + transporte.getId() +
+                    "\nSalida: " + this.getFecha() +
+                    " Origen: " + this.getOrigen().name() +
+                    " Destino: " + this.getDestino().name() +
+                    "\n\n";
         } else {
             return "Tipo de Avion: " + transporte.isA +
                     "\nID Avion: " + transporte.getId() +

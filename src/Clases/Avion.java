@@ -1,4 +1,5 @@
 package Clases;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.UUID;
@@ -16,7 +17,7 @@ public class Avion implements Serializable {
     private LinkedList<String> fechas = new LinkedList<>();
     protected String isA;
 
-    public Avion(){
+    public Avion() {
         this.setRandomCapacidadDeCombustible();
         this.setRandomCapacidadMaximaDePasajeros();
         this.setRandomCostoPorKM();
@@ -49,7 +50,7 @@ public class Avion implements Serializable {
     }
 
     public void setRandomCapacidadMaximaDePasajeros() {
-        capacidadMaximaDePasajeros = (int) (Math.random() * 3 + 2) ;
+        capacidadMaximaDePasajeros = (int) (Math.random() * 3 + 2);
     }
 
     public void setRandomCapacidadDeCombustible() {
@@ -106,7 +107,7 @@ public class Avion implements Serializable {
 
     public void setRandomCostoPorKM() {
         //elije un numero random entre 150 y 300
-        costoPorKM = (int) (Math.random() *150 + 150);
+        costoPorKM = (int) (Math.random() * 150 + 150);
     }
 
     public int getCapacidadMaximaDePasajeros() {
@@ -135,16 +136,16 @@ public class Avion implements Serializable {
 
     @Override
     public String toString() {
-        if(disponible) {
-            return  "\ncapacidadDeCombustible: " + capacidadDeCombustible +
+        if (disponible) {
+            return "\ncapacidadDeCombustible: " + capacidadDeCombustible +
                     "\ncostoPorKM: " + costoPorKM +
                     "\ncapacidadMaximaDePasajeros: " + capacidadMaximaDePasajeros +
                     "\nvelocidadMaxima: " + velocidadMaxima +
                     "\ntipoDePropulsion: " + tipoDePropulsion +
                     "\nID Avion: " + id +
                     "\nEstado del Avion: DISPONIBLE.\n";
-        }else {
-            return  "\ncapacidadDeCombustible: " + capacidadDeCombustible +
+        } else {
+            return "\ncapacidadDeCombustible: " + capacidadDeCombustible +
                     "\ncostoPorKM: " + costoPorKM +
                     "\ncapacidadMaximaDePasajeros: " + capacidadMaximaDePasajeros +
                     "\nvelocidadMaxima: " + velocidadMaxima +

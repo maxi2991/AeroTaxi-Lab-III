@@ -9,7 +9,7 @@ public class Gold extends Avion implements Serializable {
 
     //catering??? no se si ponerlo porque no entiendo que carajo hace
 
-    public Gold(){
+    public Gold() {
         super();
         setTarifa(6000);
         setRandomWifi();
@@ -24,7 +24,7 @@ public class Gold extends Avion implements Serializable {
     }
 
     public void setRandomWifi() {
-            //metodo random que devuelve un booleando
+        //metodo random que devuelve un booleando
         this.wifi = new Random().nextBoolean();
     }
 
@@ -35,12 +35,12 @@ public class Gold extends Avion implements Serializable {
 
     @Override
     public String toString() {
-        if(wifi) {
+        if (wifi) {
             return "Tipo de avion: " + this.getClass().getSimpleName() +
                     "\nTiene Wifi" +
                     "\nCon Catering" +
                     "\n" + super.toString();
-        }else {
+        } else {
             return "Tipo de avion: " + this.getClass().getSimpleName() +
                     "\nNo tiene Wifi" +
                     "\n" + super.toString();

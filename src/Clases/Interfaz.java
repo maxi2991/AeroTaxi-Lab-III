@@ -137,10 +137,10 @@ public class Interfaz {
             System.out.println("Repita su password: ");
             rpass = tecla.nextLine();
             Verificador.validarPass(pass, rpass);
-            if(system.buscarCliente(dni)==-1) {
+            if (system.buscarCliente(dni) == -1) {
                 system.altaCliente(nombre, apellido, edad, pass, dni);
                 System.out.println("Registracion exitosa");
-            }else{
+            } else {
                 System.out.println("Este cliente ya existe en el sistema");
             }
 
@@ -250,12 +250,17 @@ public class Interfaz {
             destino = tecla.nextInt();
             Verificador.verficarOrigenDestino(origen, destino);
             fecha = dia + "-" + mes + "-" + LocalDate.now().getYear();
-            if(!system.mostrarAvionesDisponiblesPorFecha(fecha)) {
+            if (!system.mostrarAvionesDisponiblesPorFecha(fecha)) {
                 System.out.println("Ingrese el numero de avion ");
                 indexAvion = tecla.nextInt();
                 Verificador.verificarAvion(indexAvion, system.getAviones(), fecha);
-                system.altaVuelo(indexUsuario, fecha, Ciudad.devolverCiudad(origen), Ciudad.devolverCiudad(destino), system.getAviones().get(indexAvion));
-                System.out.println("Reserva Exitosa!");
+
+                if (confirmarVuelo(system.getAviones().get(indexAvion), system.getClientes().get(indexUsuario), Ciudad.devolverCiudad(origen), Ciudad.devolverCiudad(destino))) {
+                    system.altaVuelo(indexUsuario, fecha, Ciudad.devolverCiudad(origen), Ciudad.devolverCiudad(destino), system.getAviones().get(indexAvion));
+                    System.out.println("Reserva Exitosa!");
+                } else {
+                    System.out.println("Vuelo rechazado exitosamente!");
+                }
             } else {
                 System.out.println("no hay aviones disponibles para esta fecha");
             }
@@ -335,6 +340,7 @@ public class Interfaz {
                 System.out.println("5-Alta Avion");
                 System.out.println("6-Alta Avion Random");
                 System.out.println("7-Baja Vuelo");
+                System.out.println("8-Mostrar Vuelos de Fecha");
 
                 System.out.println("9-Volver al menu principal");
                 System.out.println("ingrese un numero");
@@ -366,6 +372,9 @@ public class Interfaz {
                         break;
                     case 7:
                         menuBajaVuelo();
+                        break;
+                    case 8:
+                        menuVuelosFecha();
                         break;
                     case 9:
                         System.out.println("saliendo del menu");
@@ -409,21 +418,47 @@ public class Interfaz {
             int mes = tecla.nextInt();
 
             int anio = LocalDate.now().getYear();
-
             System.out.println("elija un origen");
             mostrarCiudades();
             Ciudad origen = Ciudad.devolverCiudad(tecla.nextInt());
             System.out.println("elija un destino");
             Ciudad destino = Ciudad.devolverCiudad(tecla.nextInt());
-            Verificador.verficarOrigenDestino(origen.ordinal(),destino.ordinal());
+            Verificador.verficarOrigenDestino(origen.ordinal(), destino.ordinal());
 
-            system.bajaVuelo(system.getClientes().get(system.buscarCliente(dniUser)),dia,mes,anio,origen,destino);
+            system.bajaVuelo(system.getClientes().get(system.buscarCliente(dniUser)), dia, mes, anio, origen, destino);
             System.out.println("vuelo eliminado con exito!");
 
-        }catch (CustomException e) {
+        } catch (CustomException e) {
             System.out.println(e.getMessage());
+        } catch (InputMismatchException e) {
+            tecla.nextInt();
         }
 
+
+    }
+
+    private void menuVuelosFecha() {
+        int dia;
+        int mes;
+        int anio;
+        String fecha;
+
+        try {
+            System.out.println("ingrese el dia");
+            dia = tecla.nextInt();
+
+            System.out.println("ingrese el mes en numeros");
+            mes = tecla.nextInt();
+
+            anio = LocalDate.now().getYear();
+            fecha = dia + "-" + mes + "-" + anio;
+
+            if (!system.mostrarTodosLosVuelosEnFecha(fecha))
+                System.out.println("No existen vuelos para esta fecha");
+
+        } catch (InputMismatchException e) {
+            tecla.nextInt();
+        }
 
     }
 
@@ -431,7 +466,7 @@ public class Interfaz {
         System.out.println("MENU ALTA AVION");
 
 
-        try{
+        try {
             System.out.println("Seleccione el tipo de taxi a crear");
             System.out.println("0-Gold");
             System.out.println("1-Silver");
@@ -453,13 +488,13 @@ public class Interfaz {
             System.out.println("2-A Piston");
             Propulsores propulsor = Propulsores.seleccionarPropulsor(tecla.nextInt());
 
-            system.altaAvion(decicion,cantCombustible,cantPasajeros,velocidadMAX,propulsor);
+            system.altaAvion(decicion, cantCombustible, cantPasajeros, velocidadMAX, propulsor);
             System.out.println("Taxi creado con exito!");
 
-        }catch (InputMismatchException e) {
+        } catch (InputMismatchException e) {
             System.out.println("ingrese los datos requeridos");
             tecla.nextLine();
-        }catch (CustomException e) {
+        } catch (CustomException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -474,7 +509,7 @@ public class Interfaz {
         } catch (InputMismatchException e) {
             System.out.println("por favor, ingrese un numero entero");
             tecla.nextLine();
-        }catch (CustomException e) {
+        } catch (CustomException e) {
             System.out.println(e.getMessage());
         }
 
@@ -497,6 +532,19 @@ public class Interfaz {
             System.out.println("por favor, ingrese un dni correcto");
         }
 
+
+    }
+
+    public boolean confirmarVuelo(Avion transporte, Usuario actual, Ciudad origen, Ciudad destino) {
+        Vuelo preVuelo = new Vuelo(transporte, actual, "", origen, destino);
+        System.out.println("El costo del Vuelo es:  " + preVuelo.getCostoVuelo());
+        System.out.println("¿Confirma el vuelo? ");
+        System.out.println("0-SI\n1-NO");
+        if (tecla.nextInt() == 0) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 

@@ -264,5 +264,38 @@
     "costoVuelo": 275600.0,
     "disponible": true,
     "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "8e0e9edf-3a14-47d5-b5f6-e6568786733e",
+      "capacidadDeCombustible": 314,
+      "costoPorKM": 202,
+      "capacidadMaximaDePasajeros": 3,
+      "velocidadMaxima": 160,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 6000,
+      "disponible": true,
+      "fechas": [
+        "20-6-2020"
+      ],
+      "isA": "Gold"
+    },
+    "fecha": "20-6-2020",
+    "origen": "BUENOS_AIRES",
+    "destino": "CORDOBA",
+    "cliente": {
+      "nombre": "maximiliano",
+      "apellido": "commisso",
+      "dni": 36332504,
+      "edad": 28,
+      "password": "asd12345",
+      "costoTotal": 724220.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 153390.0,
+    "disponible": true,
+    "isA": "Vuelo"
   }
 ]
