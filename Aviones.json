@@ -6,7 +6,7 @@
     "capacidadMaximaDePasajeros": 2,
     "velocidadMaxima": 170,
     "tipoDePropulsion": "HELICE",
-    "tarifa": 0,
+    "tarifa": 3000,
     "disponible": true,
     "fechas": [
       "13-6-2020",
@@ -21,7 +21,7 @@
     "capacidadMaximaDePasajeros": 4,
     "velocidadMaxima": 160,
     "tipoDePropulsion": "HELICE",
-    "tarifa": 0,
+    "tarifa": 4000,
     "disponible": true,
     "fechas": [
       "13-6-2020",
@@ -36,7 +36,7 @@
     "capacidadMaximaDePasajeros": 3,
     "velocidadMaxima": 179,
     "tipoDePropulsion": "HELICE",
-    "tarifa": 0,
+    "tarifa": 4000,
     "disponible": true,
     "fechas": [
       "13-6-2020"
@@ -52,7 +52,9 @@
     "tipoDePropulsion": "PISTONES",
     "tarifa": 4000,
     "disponible": true,
-    "fechas": [],
+    "fechas": [
+      "18-6-2020"
+    ],
     "isA": "Silver"
   },
   {
@@ -75,9 +77,51 @@
     "capacidadMaximaDePasajeros": 4,
     "velocidadMaxima": 208,
     "tipoDePropulsion": "HELICE",
-    "tarifa": 0,
+    "tarifa": 3000,
+    "disponible": true,
+    "fechas": [
+      "18-6-2020"
+    ],
+    "isA": "Bronze"
+  },
+  {
+    "wifi": false,
+    "id": "fd23d826-6813-4605-a253-4717c6cd8cd3",
+    "capacidadDeCombustible": 550,
+    "costoPorKM": 257,
+    "capacidadMaximaDePasajeros": 4,
+    "velocidadMaxima": 183,
+    "tipoDePropulsion": "HELICE",
+    "tarifa": 6000,
     "disponible": true,
     "fechas": [],
+    "isA": "Gold"
+  },
+  {
+    "id": "61ee8929-a0c4-4189-b3fe-e78ce9a6bb67",
+    "capacidadDeCombustible": 547,
+    "costoPorKM": 289,
+    "capacidadMaximaDePasajeros": 4,
+    "velocidadMaxima": 160,
+    "tipoDePropulsion": "PISTONES",
+    "tarifa": 3000,
+    "disponible": true,
+    "fechas": [
+      "18-6-2020"
+    ],
     "isA": "Bronze"
+  },
+  {
+    "wifi": false,
+    "id": "8e0e9edf-3a14-47d5-b5f6-e6568786733e",
+    "capacidadDeCombustible": 314,
+    "costoPorKM": 202,
+    "capacidadMaximaDePasajeros": 3,
+    "velocidadMaxima": 160,
+    "tipoDePropulsion": "HELICE",
+    "tarifa": 6000,
+    "disponible": true,
+    "fechas": [],
+    "isA": "Gold"
   }
 ]

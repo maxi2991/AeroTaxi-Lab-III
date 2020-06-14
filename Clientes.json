@@ -20,5 +20,16 @@
     "mejorCategoria": "Gold",
     "acompanantes": 1,
     "isA": "Usuario"
+  },
+  {
+    "nombre": "juan",
+    "apellido": "perez",
+    "dni": 15222333,
+    "edad": 45,
+    "password": "asd12345",
+    "costoTotal": 1067800.0,
+    "mejorCategoria": "Silver",
+    "acompanantes": 1,
+    "isA": "Usuario"
   }
 ]

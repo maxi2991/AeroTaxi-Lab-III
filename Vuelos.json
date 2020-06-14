@@ -165,5 +165,104 @@
     "costoVuelo": 203350.0,
     "disponible": false,
     "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "d65de46b-4515-471c-abb2-88c0466d267b",
+      "capacidadDeCombustible": 476,
+      "costoPorKM": 174,
+      "capacidadMaximaDePasajeros": 4,
+      "velocidadMaxima": 208,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 3000,
+      "disponible": true,
+      "fechas": [
+        "18-6-2020"
+      ],
+      "isA": "Bronze"
+    },
+    "fecha": "18-6-2020",
+    "origen": "BUENOS_AIRES",
+    "destino": "MONTEVIDEO",
+    "cliente": {
+      "nombre": "juan",
+      "apellido": "perez",
+      "dni": 15222333,
+      "edad": 45,
+      "password": "asd12345",
+      "costoTotal": 1067800.0,
+      "mejorCategoria": "Silver",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 175300.0,
+    "disponible": true,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "61ee8929-a0c4-4189-b3fe-e78ce9a6bb67",
+      "capacidadDeCombustible": 547,
+      "costoPorKM": 289,
+      "capacidadMaximaDePasajeros": 4,
+      "velocidadMaxima": 160,
+      "tipoDePropulsion": "PISTONES",
+      "tarifa": 3000,
+      "disponible": true,
+      "fechas": [
+        "18-6-2020"
+      ],
+      "isA": "Bronze"
+    },
+    "fecha": "18-6-2020",
+    "origen": "MONTEVIDEO",
+    "destino": "SANTIAGO",
+    "cliente": {
+      "nombre": "juan",
+      "apellido": "perez",
+      "dni": 15222333,
+      "edad": 45,
+      "password": "asd12345",
+      "costoTotal": 1067800.0,
+      "mejorCategoria": "Silver",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 616900.0,
+    "disponible": true,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "f1h6d8f1j3d5d",
+      "capacidadDeCombustible": 250,
+      "costoPorKM": 252,
+      "capacidadMaximaDePasajeros": 5,
+      "velocidadMaxima": 300,
+      "tipoDePropulsion": "PISTONES",
+      "tarifa": 4000,
+      "disponible": true,
+      "fechas": [
+        "18-6-2020"
+      ],
+      "isA": "Silver"
+    },
+    "fecha": "18-6-2020",
+    "origen": "CORDOBA",
+    "destino": "SANTIAGO",
+    "cliente": {
+      "nombre": "juan",
+      "apellido": "perez",
+      "dni": 15222333,
+      "edad": 45,
+      "password": "asd12345",
+      "costoTotal": 1067800.0,
+      "mejorCategoria": "Silver",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 275600.0,
+    "disponible": true,
+    "isA": "Vuelo"
   }
 ]
