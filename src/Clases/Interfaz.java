@@ -1,20 +1,12 @@
 package Clases;
-
-import javax.xml.validation.Validator;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Interfaz {
 
     Sistema system = new Sistema();
     Scanner tecla = new Scanner(System.in);
-
-    /*public Interfaz() {
-        system = new Sistema();
-        tecla = new Scanner(System.in);
-    }*/
 
     public void start() {
         mainMenu();
@@ -254,6 +246,8 @@ public class Interfaz {
                 System.out.println("Ingrese el numero de avion ");
                 indexAvion = tecla.nextInt();
                 Verificador.verificarAvion(indexAvion, system.getAviones(), fecha);
+
+                Verificador.verificarVuelo(system.buscarVuelo(system.getClientes().get(indexUsuario),fecha,Ciudad.devolverCiudad(origen),Ciudad.devolverCiudad(destino)));
 
                 if (confirmarVuelo(system.getAviones().get(indexAvion), system.getClientes().get(indexUsuario), Ciudad.devolverCiudad(origen), Ciudad.devolverCiudad(destino))) {
                     system.altaVuelo(indexUsuario, fecha, Ciudad.devolverCiudad(origen), Ciudad.devolverCiudad(destino), system.getAviones().get(indexAvion));
@@ -540,11 +534,7 @@ public class Interfaz {
         System.out.println("El costo del Vuelo es:  " + preVuelo.getCostoVuelo());
         System.out.println("¿Confirma el vuelo? ");
         System.out.println("0-SI\n1-NO");
-        if (tecla.nextInt() == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return tecla.nextInt() == 0;
 
     }
 

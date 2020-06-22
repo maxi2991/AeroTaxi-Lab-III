@@ -81,24 +81,8 @@ public class Avion implements Serializable {
         fechas.remove(date);
     }
 
-    public int getCapacidadDeCombustible() {
-        return capacidadDeCombustible;
-    }
-
-    public void setCapacidadDeCombustible(int capacidadDeCombustible) {
-        this.capacidadDeCombustible = capacidadDeCombustible;
-    }
-
     public int getCostoPorKM() {
         return costoPorKM;
-    }
-
-    public void setCostoPorKM(int costoPorKM) {
-        this.costoPorKM = costoPorKM;
-    }
-
-    public void setFechas(LinkedList<String> fechas) {
-        this.fechas = fechas;
     }
 
     public LinkedList<String> getFechas() {
@@ -112,22 +96,6 @@ public class Avion implements Serializable {
 
     public int getCapacidadMaximaDePasajeros() {
         return capacidadMaximaDePasajeros;
-    }
-
-    public void setCapacidadMaximaDePasajeros(int capacidadMaximaDePasajeros) {
-        this.capacidadMaximaDePasajeros = capacidadMaximaDePasajeros;
-    }
-
-    public int getVelocidadMaxima() {
-        return velocidadMaxima;
-    }
-
-    public void setVelocidadMaxima(int velocidadMaxima) {
-        this.velocidadMaxima = velocidadMaxima;
-    }
-
-    public Propulsores getTipoDePropulsion() {
-        return tipoDePropulsion;
     }
 
     public void setTipoDePropulsion(Propulsores tipoDePropulsion) {

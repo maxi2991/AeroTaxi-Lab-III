@@ -29,49 +29,24 @@ public class Vuelo implements Serializable {
         isA = "Vuelo";
     }
 
-
     public Avion getTransporte() {
         return transporte;
-    }
-
-    public void setTransporte(Avion transporte) {
-        this.transporte = transporte;
     }
 
     public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public Ciudad getOrigen() {
         return origen;
-    }
-
-    public void setOrigen(Ciudad origen) {
-        this.origen = origen;
     }
 
     public Ciudad getDestino() {
         return destino;
     }
 
-    public void setDestino(Ciudad destino) {
-        this.destino = destino;
-    }
-
     public float getCostoVuelo() {
         return costoVuelo;
-    }
-
-    public void setCostoVuelo(float costoVuelo) {
-        this.costoVuelo = costoVuelo;
-    }
-
-    public boolean isDisponible() {
-        return disponible;
     }
 
     public void setDisponible(boolean disponible) {
@@ -81,11 +56,6 @@ public class Vuelo implements Serializable {
     public Usuario getCliente() {
         return cliente;
     }
-
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
-    }
-
 
     public float calcularCosto(int distancia) {
 
@@ -125,10 +95,9 @@ public class Vuelo implements Serializable {
 
     }
 
-
     @Override
     public String toString() {
-        if (this.disponible) {
+        if (disponible) {
             return "Tipo de Avion: " + transporte.isA +
                     "\nID Avion: " + transporte.getId() +
                     "\nSalida: " + this.getFecha() +

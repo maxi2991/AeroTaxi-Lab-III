@@ -7,7 +7,7 @@
       "capacidadMaximaDePasajeros": 4,
       "velocidadMaxima": 160,
       "tipoDePropulsion": "HELICE",
-      "tarifa": 0,
+      "tarifa": 4000,
       "disponible": true,
       "fechas": [
         "13-6-2020",
@@ -41,7 +41,7 @@
       "capacidadMaximaDePasajeros": 3,
       "velocidadMaxima": 179,
       "tipoDePropulsion": "HELICE",
-      "tarifa": 0,
+      "tarifa": 4000,
       "disponible": true,
       "fechas": [
         "13-6-2020"
@@ -74,7 +74,7 @@
       "capacidadMaximaDePasajeros": 3,
       "velocidadMaxima": 179,
       "tipoDePropulsion": "HELICE",
-      "tarifa": 0,
+      "tarifa": 4000,
       "disponible": true,
       "fechas": [
         "13-6-2020"
@@ -107,7 +107,7 @@
       "capacidadMaximaDePasajeros": 2,
       "velocidadMaxima": 170,
       "tipoDePropulsion": "HELICE",
-      "tarifa": 0,
+      "tarifa": 3000,
       "disponible": true,
       "fechas": [
         "13-6-2020",
@@ -141,7 +141,7 @@
       "capacidadMaximaDePasajeros": 4,
       "velocidadMaxima": 160,
       "tipoDePropulsion": "HELICE",
-      "tarifa": 0,
+      "tarifa": 4000,
       "disponible": true,
       "fechas": [
         "13-6-2020"
@@ -296,6 +296,108 @@
     },
     "costoVuelo": 153390.0,
     "disponible": true,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "d65de46b-4515-471c-abb2-88c0466d267b",
+      "capacidadDeCombustible": 476,
+      "costoPorKM": 174,
+      "capacidadMaximaDePasajeros": 4,
+      "velocidadMaxima": 208,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 3000,
+      "disponible": true,
+      "fechas": [
+        "18-6-2020",
+        "22-6-2020"
+      ],
+      "isA": "Bronze"
+    },
+    "fecha": "22-6-2020",
+    "origen": "BUENOS_AIRES",
+    "destino": "SANTIAGO",
+    "cliente": {
+      "nombre": "martin",
+      "apellido": "caminero",
+      "dni": 39170489,
+      "edad": 24,
+      "password": "asd12345",
+      "costoTotal": 1684390.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 253600.0,
+    "disponible": true,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "s5f34f9d5",
+      "capacidadDeCombustible": 550,
+      "costoPorKM": 260,
+      "capacidadMaximaDePasajeros": 2,
+      "velocidadMaxima": 170,
+      "tipoDePropulsion": "HELICE",
+      "tarifa": 3000,
+      "disponible": true,
+      "fechas": [
+        "13-6-2020",
+        "15-6-2020",
+        "22-6-2020"
+      ],
+      "isA": "Bronze"
+    },
+    "fecha": "22-6-2020",
+    "origen": "BUENOS_AIRES",
+    "destino": "SANTIAGO",
+    "cliente": {
+      "nombre": "martin",
+      "apellido": "caminero",
+      "dni": 39170489,
+      "edad": 24,
+      "password": "asd12345",
+      "costoTotal": 1684390.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 374000.0,
+    "disponible": true,
+    "isA": "Vuelo"
+  },
+  {
+    "transporte": {
+      "id": "61ee8929-a0c4-4189-b3fe-e78ce9a6bb67",
+      "capacidadDeCombustible": 547,
+      "costoPorKM": 289,
+      "capacidadMaximaDePasajeros": 4,
+      "velocidadMaxima": 160,
+      "tipoDePropulsion": "PISTONES",
+      "tarifa": 3000,
+      "disponible": true,
+      "fechas": [
+        "18-6-2020"
+      ],
+      "isA": "Bronze"
+    },
+    "fecha": "23-6-2020",
+    "origen": "CORDOBA",
+    "destino": "MONTEVIDEO",
+    "cliente": {
+      "nombre": "martin",
+      "apellido": "caminero",
+      "dni": 39170489,
+      "edad": 24,
+      "password": "asd12345",
+      "costoTotal": 1684390.0,
+      "mejorCategoria": "Gold",
+      "acompanantes": 1,
+      "isA": "Usuario"
+    },
+    "costoVuelo": 353910.0,
+    "disponible": false,
     "isA": "Vuelo"
   }
 ]

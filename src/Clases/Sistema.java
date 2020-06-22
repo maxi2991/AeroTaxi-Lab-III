@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -122,20 +121,12 @@ public class Sistema {
         return list;
     }
 
-    public void setAviones(ArrayList<Avion> aviones) {
-        this.aviones = aviones;
-    }
-
     public ArrayList<Usuario> getClientes() {
         return clientes;
     }
 
     public ArrayList<Avion> getAviones() {
         return aviones;
-    }
-
-    public ArrayList<Vuelo> getVuelos() {
-        return vuelos;
     }
 
     public void mostrarClientes() {

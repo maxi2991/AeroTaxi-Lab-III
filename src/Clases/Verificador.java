@@ -113,6 +113,10 @@ public class Verificador {
         }
     }
 
+    public static void verificarVuelo(int indice) throws CustomException {
+        if(indice != -1)
+            throw new CustomException("el vuelo ya existe para esa fecha");
+    }
 
     //Para fechas
 
@@ -120,7 +124,7 @@ public class Verificador {
         int diasDelmes = diasDelMes(mes, ano);
         LocalDate fechaActual = LocalDate.now();
 
-        if (dia <= 0 || dia > diasDelmes || dia < fechaActual.getDayOfMonth())
+        if (dia <= 0 || dia > diasDelmes || (dia < fechaActual.getDayOfMonth() && mes == fechaActual.getMonthValue()))
             throw new CustomException("Dia incorrecto");
         if (mes <= 0 || mes > 12 || mes < fechaActual.getMonthValue())
             throw new CustomException("Mes incorrecto");
